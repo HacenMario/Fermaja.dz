@@ -1,8 +1,3 @@
-// ===== تحديد عنوان الخادم حسب البيئة =====
-const API_BASE = window.location.hostname === 'localhost' 
-  ? '' 
-  : 'https://fermaja-dz.onrender.com';
-
 document.addEventListener('DOMContentLoaded', () => {
   // التحقق من تسجيل الدخول
   if (!sessionStorage.getItem('isLoggedIn')) {
@@ -68,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
       allOrders = [];
     }
 
-    // استبعاد الطلبات المرفوضة من جميع القوائم
     const nonRejected = allOrders.filter(o => o.status !== 'مرفوض');
 
     if (date) {
@@ -134,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     tbody.innerHTML = html;
 
-    // أزرار تغيير الحالة
     document.querySelectorAll('.btn-status').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         const id = btn.dataset.id;
@@ -189,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (deliveryTotalEl) deliveryTotalEl.textContent = deliverySum.toLocaleString() + ' DA';
   }
 
-  // إعادة ضبط الفلتر
   window.resetFilter = function() {
     if (filterDate) filterDate.value = '';
     applyFilter();
@@ -197,14 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.applyFilter = applyFilter;
 
-  // الاستماع لـ SSE (لتحديث الجدول عند وصول طلب جديد)
   function connectSSE() {
     const eventSource = new EventSource(`${API_BASE}/api/events`);
     eventSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
         if (data.type === 'newOrder') {
-          fetchOrders(); // تحديث الجدول والإحصائيات تلقائياً
+          fetchOrders();
           const audio = new Audio('/sounds/notification.mp3');
           audio.play().catch(() => {});
         }
