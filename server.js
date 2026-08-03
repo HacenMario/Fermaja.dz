@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ===== إعداد البريد الإلكتروني =====
-const transporter = nodemailer.createTransporter({
+const transport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER,
@@ -19,14 +19,14 @@ const transporter = nodemailer.createTransporter({
   },
 });
 
-transporter.verify((error, success) => {
+transport.verify((error, success) => {
   if (error) {
     console.error('❌ فشل الاتصال بخادم البريد:', error);
   } else {
     console.log('✅ جاهز لإرسال البريد الإلكتروني');
   }
 });
-app.set('transporter', transporter);
+app.set('transport', transport);
 
 // ===== إعداد VAPID ====
 webpush.setVapidDetails(
