@@ -85,6 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSummary(filtered);
   }
 
+  // ===== دالة تنسيق التاريخ =====
+function formatDate(date) {
+  if (!date) return '-';
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const hours = String(d.getHours()).padStart(2, '0');
+  const minutes = String(d.getMinutes()).padStart(2, '0');
+  const seconds = String(d.getSeconds()).padStart(2, '0');
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+}
+
   // عرض الطلبات
   function renderOrders(orders) {
     if (!tbody) return;
@@ -116,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${priceWithoutDelivery} DA</td>
           <td>${order.deliveryFee || 0} DA</td>
           <td><strong>${order.totalPrice || 0} DA</strong></td>
+           <td>${formatDate(order.createdAt)}</td>
           <td><span class="status-badge ${statusClass}">${order.status || ''}</span></td>
           <td class="no-print">
             ${order.status === 'جديد' ? `<button class="btn-status btn-accept" data-id="${order._id}" data-status="مقبول">قبول</button>` : ''}
