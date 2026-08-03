@@ -1,8 +1,7 @@
-// تحديد عنوان الخادم حسب البيئة
+// ===== تحديد عنوان الخادم حسب البيئة =====
 const API_BASE = window.location.hostname === 'localhost' 
   ? '' 
   : 'https://fermaja-dz.onrender.com';
-
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🟢 main.js: DOM loaded');
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     acceptBtn.onclick = async () => {
       try {
-        const res = await fetch(`/api/orders/${order._id}`, {
+        const res = await fetch(`${API_BASE}/api/orders/${order._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ status: 'مقبول' })
@@ -128,8 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      eventSource = new EventSource('/api/events');
-      console.log('🔄 main.js: جاري الاتصال بـ SSE...');
+      const sseUrl = `${API_BASE}/api/events`;
+      eventSource = new EventSource(sseUrl);
+      console.log(`🔄 main.js: جاري الاتصال بـ SSE (${sseUrl})...`);
 
       eventSource.onopen = () => {
         console.log('✅ main.js: اتصال SSE ناجح');
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       eventSource.onerror = (event) => {
-        console.warn('⚠️ main.js: خطأ في SSE، إعادة محاولة الاتصال خلال 3 ثوان...');
+        console.warn(`⚠️ main.js: خطأ في SSE، إعادة محاولة الاتصال خلال 3 ثوان... (${sseUrl})`);
         if (eventSource) {
           eventSource.close();
           eventSource = null;
