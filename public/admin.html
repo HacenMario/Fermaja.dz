@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة التحكم - Admin dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/1.png" type="image/png">
+  <style>
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid rgba(230,168,0,0.08);
+    }
+    .stat-card .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--btn-primary-bg);
+    }
+    .stat-card .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 5px;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 18px 22px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+    .filter-bar label {
+      font-weight: 700;
+    }
+    .filter-bar input[type="date"] {
+      padding: 10px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+    }
+    .filter-bar button {
+      padding: 10px 24px;
+      background: var(--btn-secondary-bg);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .filter-bar button:hover {
+      background: var(--btn-secondary-hover);
+    }
+    .orders-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin: 20px 0;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-item .amount {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--btn-primary-bg);
+    }
+    .orders-table-wrap {
+      overflow-x: auto;
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 5px;
+    }
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .orders-table th {
+      background: var(--header-bg);
+      padding: 14px 12px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--text-color);
+      border-bottom: 2px solid var(--border-color);
+    }
+    .orders-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    .orders-table tr:hover {
+      background: rgba(230,168,0,0.04);
+    }
+    .status-badge {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-block;
+    }
+    .status-new { background: #ffc107; color: #333; }
+    .status-accepted { background: #28a745; color: #fff; }
+    .status-rejected { background: #dc3545; color: #fff; }
+    .status-completed { background: #17a2b8; color: #fff; }
+    .btn-status {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin: 2px;
+      transition: 0.3s;
+    }
+    .btn-status:hover { transform: scale(1.05); }
+    .btn-accept { background: #28a745; color: #fff; }
+    .btn-reject { background: #dc3545; color: #fff; }
+    .btn-complete { background: #17a2b8; color: #fff; }
+    .no-orders { padding: 40px; text-align: center; opacity: 0.6; }
+    @media (max-width: 768px) {
+      .filter-bar { flex-direction: column; align-items: stretch; }
+      .orders-table th, .orders-table td { font-size: 0.75rem; padding: 8px 5px; }
+      .stat-card .stat-number { font-size: 1.6rem; }
+    }
+    @media print {
+      .filter-bar, .btn-status, .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container admin-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+      <div class="logo" style="display:flex; align-items:center; gap:10px;">
+        <img src="images/1.png" alt="Fermaja" style="height:50px; width:auto;" />
+        <h1>Admin Dashboard - لوحة التحكم</h1>
+      </div>
+      <nav>
+        <ul style="display:flex; gap:15px; list-style:none; align-items:center;">
+          <li><a href="index.html">Acceuil - الرئيسية</a></li>
+          <li><a href="admin.html" class="active">Commandes - الطلبات</a></li>
+          <li><button onclick="logout()" style="background:#dc3545;color:#fff;border:none;padding:8px 18px;border-radius:30px;cursor:pointer;font-weight:700;">Logout🚪خروج</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-section" style="padding:40px 0;">
+    <div class="container">
+      <h2>📋 إدارة الطلبات - Gestion des ordres</h2>
+      <p class="subtitle">مراقبة وتحديث الطلبات مع إحصائيات فورية - ‎Surveillez et mettez à jour les ordres avec des statistiques en temps réel‎</p>
+
+      <!-- إحصائيات سريعة -->
+      <div class="admin-stats" id="statsContainer">
+        <div class="stat-card"><div class="stat-number" id="totalOrders">0</div><div class="stat-label">إجمالي الطلبات - Total des commandes</div></div>
+        <div class="stat-card"><div class="stat-number" id="newOrders">0</div><div class="stat-label">جديد - Nouveau</div></div>
+        <div class="stat-card"><div class="stat-number" id="acceptedOrders">0</div><div class="stat-label">مقبول - Accepté</div></div>
+        <div class="stat-card"><div class="stat-number" id="completedOrders">0</div><div class="stat-label">مكتمل - ‎Completé</div></div>
+      </div>
+
+      <!-- فلترة حسب اليوم -->
+      <div class="filter-bar">
+        <label for="filterDate">📅 تصفية حسب اليوم - Filtrer par Date</label>
+        <input type="date" id="filterDate" />
+        <button onclick="applyFilter()">🔍</button>
+        <button onclick="resetFilter()" style="background:#6c757d;">🔄 إلغاء الفلترة - Reinitialiser le filtre </button>
+        <span style="margin-right:auto;font-weight:700;" id="filterLabel">عرض الكل - Afficher tout</span>
+      </div>
+
+      <!-- ملخص المبالغ -->
+      <div class="orders-summary" id="summaryContainer">
+        <div class="summary-item"><div class="amount" id="sumWithDelivery">0 DA</div><div>💰TOTAL (avec livraison)</div></div>
+        <div class="summary-item"><div class="amount" id="sumWithoutDelivery">0 DA</div><div>💰 Total (sans livraison)</div></div>
+        <div class="summary-item"><div class="amount" id="deliveryTotal">0 DA</div><div>🚚 Frais de livraison</div></div>
+      </div>
+
+      <!-- جدول الطلبات -->
+      <div class="orders-table-wrap">
+        <table class="orders-table" id="ordersTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nom complet</th>
+              <th>N° de Tel</th>
+              <th>Sandwich</th>
+              <th>Supplément</th>
+              <th>Dessert</th>
+              <th>Boisson</th>
+              <th>Commune</th>
+              <th>Prix (sans livraison)</th>
+              <th>Frais de livraison</th>
+              <th>TOTAL</th>
+              <th>Etat</th>
+              <th class="no-print">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody">
+            <!-- سيتم ملء البيانات -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© فرماجة 2026 , جميع الحقوق محفوظة</p>
+      <p>© Fermaja 2026 , tous droits réservés</p>
+      <div class="social">
+        <a href="https://www.instagram.com/fermaja.food/" target="_blank">📸Instagram - إنستغرام </a>
+    </div>
+  </footer>
+
+  <script src="js/admin.js"></script>
+  <script>
+    function logout() {
+      sessionStorage.removeItem('isLoggedIn');
+      window.location.href = '/login.html';
+    }
+    // التحقق من تسجيل الدخول
+    if (!sessionStorage.getItem('isLoggedIn')) {
+      window.location.href = '/login.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>القائمة - Menu</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/1.png" type="image/png">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="images/1.png" alt="Fermaja" class="logo-img" />
+        <h1>فرماجة - Fermaja</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" data-i18n="nav_home">Acceuil -  الرئيسية</a></li>
+          <li><a href="menu.html" data-i18n="nav_menu">Menu - القائمة</a></li>
+          <li><a href="about.html" data-i18n="nav_about">Qui sommes nous - من نحن</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact - اتصل بنا</a></li>
+          <li><a href="lead.html" class="btn-lead" data-i18n="nav_order">📩 Commandez maintenant - أطلب الآن</a></li>
+          <li><a href="admin.html">📊Admin dashboard - لوحة التحكم</a></li>
+        </ul>
+        <div class="controls">
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-section">
+    <div class="container">
+      <h2 data-i18n="menu_title">الساندويشات - Nos Sandwishs</h2>
+      <p class="subtitle" data-i18n="menu_subtitle">Choisissez ce que votre cœur désire, le tout préparé avec les meilleurs fromages‎ - اختر ما يشتهيه قلبك، كلها محضرة بأجود أنواع الجبن</p>
+
+      <div class="menu-grid">
+        <div class="menu-card">
+          <span class="menu-icon">3 🧀</span>
+          <h3>Fermaja - فرماجة</h3>
+          <p data-i18n="menu_fermaja_desc">Fromage fondu, Gruyère, Cheddar</p>
+                 <p data-i18n="menu_fermaja_desc">جبن مذوب، غرويار، شيدار</p>
+          <span class="price">250 DA</span>
+        </div>
+        <div class="menu-card">
+          <span class="menu-icon">4 🧀</span>
+          <h3>Fermajinho - فرماجينيو</h3>
+          <p data-i18n="menu_fermajinho_desc">Fromage fondu, Gruyère, Cheddar, Camembert</p>
+          <p data-i18n="menu_fermajinho_desc">جبن مذوب، غرويار، شيدار، كاممبار</p>
+
+          <span class="price">350 DA</span>
+        </div>
+        <div class="menu-card">
+          <span class="menu-icon">7 🧀</span>
+          <h3>Fermajo - فرماجو</h3>
+          <p data-i18n="menu_fermajo_desc">Fromage fondu, Gruyère, Cheddar, Camembert, Kiri, Fromage rouge, Gouda</p>
+          <p data-i18n="menu_fermajo_desc">جبن مذوب، غرويار، شيدار، كاممبار، كيري، فروماج روج، غودا</p>
+          <span class="price">600 DA</span>
+        </div>
+      </div>
+    </div>
+
+      <!-- Suppléments - الإضافات-->
+      <h3 class="section-title" data-i18n="supplements_title">الإضافات - Suppléments - (+100 DA / +150 DA)</h3>
+      <div class="supplements-grid">
+        <span>Salami - سلامي</span><span>Gruyère - غرويار</span><span>Fromage rouge - فروماج روج</span>
+        <span>Thon - تونة</span><span>Kiri - كيري</span><span>Gouda - غودا</span>
+        <span>Cheddar - شيدار</span><span>Camembert - كاممبار</span><span>Paté de volaille -  باتي الدجاج</span>
+        <span>Rôti de poulet fumé - روتي دجاج مدخن</span><span>Viande fumée - لحم مدخن</span>
+        <span style="background:#68542d;color:#fff;">Paté de volaille Robert -  باتي الدجاج روبرت (+150 DA)</span>
+      </div>
+
+      <!-- Desserts - التحليات -->
+      <h3 class="section-title" data-i18n="desserts_title">🍰 Desserts - التحليات</h3>
+      <div class="desserts-grid">
+        <div class="dessert-item">Tiramisu Nutella - تيراميسو نوتيلا 400 DA</div>
+        <div class="dessert-item">Tiramisu Bueno - تيراميسو بوينو 400 DA</div>
+        <div class="dessert-item">Tiramisu Speculos - تيرميسو سبيكولوس 400 DA</div>
+        <div class="dessert-item">Tiramisu Pistache - تيراميسو بندق 400 DA</div>
+      </div>
+
+      <!-- Boissons - المشروبات -->
+      <h3 class="section-title" data-i18n="drinks_title">🥤 Boissons - المشروبات</h3>
+      <div class="drinks-grid">
+        <div>Eau Minérale pm - ماء معدني صغير 50 DA</div>
+        <div>Eau gazeuse - ماء غازي 70 DA</div>
+        <div>Hamoud cannette - حمود كانيطة 100 DA</div>
+      </div>
+
+        <a href="lead.html" class="btn-primary" data-i18n="hero_order_btn">📩 Commandez maintenant - أطلب الآن</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© فرماجة 2026 , جميع الحقوق محفوظة</p>
+      <p>© Fermaja 2026 , tous droits réservés</p>
+      <div class="social">
+        <a href="https://www.instagram.com/fermaja.food/" target="_blank">📸Instagram - إنستغرام </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
