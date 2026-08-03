@@ -1,5 +1,10 @@
+// ===== تحديد عنوان الخادم حسب البيئة =====
+const API_BASE = window.location.hostname === 'localhost' 
+  ? '' 
+  : 'https://fermaja-dz.onrender.com';
+
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 lead.js: DOM loaded (نموذج الطلب فقط)');
+  console.log('🚀 lead.js: DOM loaded (نموذج الطلب)');
 
   const form = document.getElementById('orderForm');
   const feedback = document.getElementById('formFeedback');
@@ -56,8 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== إرسال النموذج =====
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    feedback.textContent = 'جاري الإرسال...';
+    
+    // عرض رسالة "جاري الإرسال..."
+    feedback.textContent = '⏳ جاري الإرسال...';
     feedback.className = 'feedback';
+    feedback.style.color = '#333';
+    feedback.style.backgroundColor = '#f0f0f0';
 
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -71,34 +80,74 @@ document.addEventListener('DOMContentLoaded', () => {
     const dessert = dessertSelect.value;
     const drink = drinkSelect.value;
 
+    // التحقق من الحقول المطلوبة
     if (!name || !phone || !sandwich || !commune) {
       feedback.textContent = '❌ الرجاء ملء جميع الحقول المطلوبة.';
       feedback.className = 'feedback error';
+      feedback.style.color = '#721c24';
+      feedback.style.backgroundColor = '#f8d7da';
       return;
     }
 
-    const orderData = { name, phone, sandwich, supplements, dessert, drink, commune, deliveryFee, totalPrice };
+    const orderData = { 
+      name, 
+      phone, 
+      sandwich, 
+      supplements, 
+      dessert, 
+      drink, 
+      commune, 
+      deliveryFee, 
+      totalPrice 
+    };
 
     try {
+      console.log('📤 إرسال الطلب:', orderData);
+      
       const response = await fetch(`${API_BASE}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
       });
-      const result = await response.json();
+
+      console.log('📥 استجابة الخادم:', response.status, response.statusText);
+
+      // محاولة قراءة الاستجابة حتى لو لم تكن JSON
+      let result;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        // إذا لم تكن JSON، نقرأها كنص
+        const text = await response.text();
+        console.warn('⚠️ استجابة غير JSON:', text);
+        result = { success: false, error: 'استجابة غير متوقعة من الخادم' };
+      }
+
+      console.log('📦 نتيجة الطلب:', result);
+
       if (response.ok && result.success) {
-        feedback.textContent = '✅ تم إرسال طلبك بنجاح! سنتواصل معك قريباً.';
+        // ✅ رسالة النجاح المطلوبة
+        feedback.textContent = '✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك.';
         feedback.className = 'feedback success';
+        feedback.style.color = '#155724';
+        feedback.style.backgroundColor = '#d4edda';
         form.reset();
         setTimeout(calculateTotal, 100);
       } else {
-        feedback.textContent = '❌ حدث خطأ: ' + (result.error || 'يرجى المحاولة مرة أخرى');
+        // ❌ رسالة الخطأ
+        const errorMsg = result.error || result.message || 'حدث خطأ غير متوقع';
+        feedback.textContent = `❌ ${errorMsg}`;
         feedback.className = 'feedback error';
+        feedback.style.color = '#721c24';
+        feedback.style.backgroundColor = '#f8d7da';
       }
     } catch (error) {
+      console.error('❌ خطأ في الاتصال:', error);
       feedback.textContent = '❌ تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
       feedback.className = 'feedback error';
-      console.error(error);
+      feedback.style.color = '#721c24';
+      feedback.style.backgroundColor = '#f8d7da';
     }
   });
 });
