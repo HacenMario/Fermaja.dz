@@ -7,11 +7,55 @@
   <link rel="stylesheet" href="css/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="images/1.png" type="image/png">
+  <style>
+    .login-section {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fceabd, #fef9f0);
+    }
+    .login-card {
+      background: var(--card-bg, #fff);
+      padding: 50px 40px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      max-width: 420px;
+      width: 100%;
+    }
+    .login-card h2 { text-align: center; color: var(--secondary, #2b5e2b); }
+    .login-card .sub { text-align: center; opacity: 0.7; margin-bottom: 30px; }
+    .login-card .form-group { margin-bottom: 20px; }
+    .login-card label { display: block; font-weight: 700; margin-bottom: 6px; }
+    .login-card input {
+      width: 100%; padding: 14px 18px;
+      border: 2px solid var(--border, #e8ddd0);
+      border-radius: 14px;
+      background: var(--bg, #fef9f0);
+      color: var(--text, #3d2c1b);
+    }
+    .login-card input:focus {
+      border-color: var(--primary, #e6a800);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(230,168,0,0.15);
+    }
+    .login-btn {
+      width: 100%; padding: 14px;
+      background: var(--secondary, #2b5e2b);
+      color: #fff; border: none;
+      border-radius: 50px;
+      font-size: 1.1rem; font-weight: 700;
+      cursor: pointer;
+    }
+    .login-btn:hover { background: var(--secondary-dark, #1d421d); }
+    .login-error { color: #dc3545; text-align: center; margin-top: 15px; font-weight: 700; }
+    .login-logo { text-align: center; font-size: 4rem; margin-bottom: 10px; }
+  </style>
 </head>
 <body>
   <section class="login-section">
     <div class="login-card">
-      <div style="text-align:center;font-size:4rem;margin-bottom:10px;">🧀</div>
+      <div class="login-logo">🧀</div>
       <h2>لوحة التحكم</h2>
       <p class="sub">يرجى تسجيل الدخول للمتابعة</p>
       <form id="loginForm">
@@ -26,36 +70,48 @@
         <button type="submit" class="login-btn">🚀 تسجيل الدخول</button>
         <div id="loginError" class="login-error"></div>
       </form>
+      <div style="text-align:center;margin-top:20px;font-size:0.9rem;opacity:0.6;">
+      </div>
     </div>
   </section>
+
   <script>
+    // ===== تحديد عنوان الخادم حسب البيئة =====
+    const API_BASE = window.location.hostname === 'localhost' 
+      ? '' 
+      : 'https://fermaja-dz.onrender.com';
+
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
       const errorEl = document.getElementById('loginError');
+
       if (!username || !password) {
         errorEl.textContent = '⚠️ الرجاء ملء جميع الحقول';
         return;
       }
+
       try {
-        const response = await fetch('/api/login', {
+        const response = await fetch(`${API_BASE}/api/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })
         });
+
         const result = await response.json();
+
         if (result.success) {
           sessionStorage.setItem('isLoggedIn', 'true');
           window.location.href = '/admin.html';
         } else {
-          errorEl.textContent = '❌ ' + result.message;
+          errorEl.textContent = '❌ ' + (result.message || 'بيانات الدخول غير صحيحة');
         }
       } catch (err) {
-        errorEl.textContent = '❌ خطأ في الاتصال بالخادم';
-        console.error(err);
+        console.error('Login error:', err);
+        errorEl.textContent = '❌ خطأ في الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
       }
     });
-  </script><script src="js/config.js"></script>
+  </script>
 </body>
 </html>
