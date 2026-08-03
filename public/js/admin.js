@@ -1,7 +1,7 @@
+// ===== تحديد عنوان الخادم حسب البيئة =====
 const API_BASE = window.location.hostname === 'localhost' 
   ? '' 
   : 'https://fermaja-dz.onrender.com';
-
 
 document.addEventListener('DOMContentLoaded', () => {
   // التحقق من تسجيل الدخول
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // جلب الطلبات
   async function fetchOrders() {
     try {
-      const response = await fetch('/api/orders');
+      const response = await fetch(`${API_BASE}/api/orders`);
       if (!response.ok) {
         if (response.status === 401) {
           sessionStorage.removeItem('isLoggedIn');
@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const date = filterDate ? filterDate.value : '';
     let filtered = [];
 
-    // التأكد من أن allOrders مصفوفة
     if (!Array.isArray(allOrders)) {
       allOrders = [];
     }
@@ -141,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = btn.dataset.id;
         const status = btn.dataset.status;
         try {
-          const response = await fetch(`/api/orders/${id}`, {
+          const response = await fetch(`${API_BASE}/api/orders/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status })
@@ -198,9 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.applyFilter = applyFilter;
 
-  // الاستماع لـ SSE
+  // الاستماع لـ SSE (لتحديث الجدول عند وصول طلب جديد)
   function connectSSE() {
-    const eventSource = new EventSource('/api/events');
+    const eventSource = new EventSource(`${API_BASE}/api/events`);
     eventSource.onmessage = (event) => {
       try {
         const data = JSON.parse(event.data);
@@ -214,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
     eventSource.onerror = () => setTimeout(connectSSE, 3000);
   }
 
-  // بدء التحميل
   fetchOrders();
   connectSSE();
 });
