@@ -1,11 +1,3 @@
-const API_BASE = (() => {
-  if (window.location.hostname === 'localhost') return '';
-  if (window.API_BASE) return window.API_BASE;
-  return 'https://fermaja-dz.onrender.com';
-})();
-
-console.log('🌐 admin.js API_BASE =', API_BASE);
-
 document.addEventListener('DOMContentLoaded', () => {
   // التحقق من تسجيل الدخول
   if (!sessionStorage.getItem('isLoggedIn')) {
