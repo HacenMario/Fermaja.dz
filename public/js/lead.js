@@ -1,7 +1,7 @@
+// ===== تحديد عنوان الخادم حسب البيئة =====
 const API_BASE = window.location.hostname === 'localhost' 
   ? '' 
   : 'https://fermaja-dz.onrender.com';
-
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 lead.js: DOM loaded (نموذج الطلب فقط)');
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderData = { name, phone, sandwich, supplements, dessert, drink, commune, deliveryFee, totalPrice };
 
     try {
-      const response = await fetch('/api/orders', {
+      const response = await fetch(`${API_BASE}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
