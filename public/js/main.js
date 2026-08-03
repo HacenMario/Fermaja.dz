@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   console.log('🟢 main.js: DOM loaded');
 
   // ===== التحقق من حالة تسجيل الدخول =====
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     acceptBtn.onclick = async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/orders/${order._id}`, {
+        const res = await fetch(`${window.API_BASE}/api/orders/${order._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ status: 'مقبول' })
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const sseUrl = `${API_BASE}/api/events`;
+      const sseUrl = `${window.API_BASE}/api/events`;
       eventSource = new EventSource(sseUrl);
       console.log(`🔄 main.js: جاري الاتصال بـ SSE (${sseUrl})...`);
 
@@ -181,48 +181,56 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== بدء الاتصال =====
   connectSSE();
 
-// ===== زر العودة إلى الأعلى =====
-(function initBackToTop() {
-  const btn = document.getElementById('backToTopBtn');
-  if (!btn) return;
-
-  // زر العودة إلى الأعلى
-  btn.addEventListener('click', function() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-
-  // إظهار/إخفاء الزر بناءً على التمرير
-  let lastScrollY = 0;
-  let ticking = false;
-
-  function handleScroll() {
-    const currentScrollY = window.scrollY || window.pageYOffset;
-    const triggerPoint = 300; // يظهر بعد 300px من التمرير
-
-    if (currentScrollY > triggerPoint) {
-      btn.classList.add('show');
-    } else {
-      btn.classList.remove('show');
+  // ===== زر تغيير الوضع (النهاري/الليلي) =====
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const themeToggle = document.querySelector('#themeToggle');
+    if (themeToggle) {
+      themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
     }
-
-    lastScrollY = currentScrollY;
-    ticking = false;
   }
 
-  // استخدام requestAnimationFrame لتحسين الأداء
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        handleScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
+  const themeToggle = document.querySelector('#themeToggle');
+  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
 
-  // التحقق عند التحميل (في حال تم تحميل الصفحة مع تمرير)
-  handleScroll();
-})();
+  // ===== زر العودة إلى الأعلى (Back to Top) =====
+  function initBackToTop() {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+
+    btn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    let ticking = false;
+    const triggerPoint = 300;
+
+    function handleScroll() {
+      const currentScrollY = window.scrollY || window.pageYOffset;
+      if (currentScrollY > triggerPoint) {
+        btn.classList.add('show');
+      } else {
+        btn.classList.remove('show');
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // التحقق عند التحميل
+    handleScroll();
+  }
+
+  initBackToTop();
+});
