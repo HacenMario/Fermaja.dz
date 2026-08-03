@@ -1,13 +1,11 @@
+// تحديد عنوان الخادم حسب البيئة
 const API_BASE = window.location.hostname === 'localhost' 
   ? '' 
-  : '  : 'https://fermaja-dz.onrender.com';
-
-const response = await fetch(`${API_BASE}/api/vapid-public-key`);
-
+  : 'https://fermaja-dz.onrender.com'; // استبدل برابط Render الفعلي
 
 async function getVapidPublicKey() {
   try {
-    const response = await fetch('/api/vapid-public-key');
+    const response = await fetch(`${API_BASE}/api/vapid-public-key`);
     if (!response.ok) throw new Error('Failed to fetch VAPID key');
     const data = await response.json();
     return data.publicKey;
@@ -44,7 +42,7 @@ async function registerPush() {
       applicationServerKey: urlBase64ToUint8Array(publicKey)
     });
 
-    await fetch('/api/subscribe', {
+    await fetch(`${API_BASE}/api/subscribe`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(subscription)
