@@ -1,7 +1,7 @@
 // تحديد عنوان الخادم حسب البيئة
 const API_BASE = window.location.hostname === 'localhost' 
   ? '' 
-  : 'https://fermaja-backend.onrender.com'; // استبدل بـ رابط Render الخاص بك
+  : 'https://fermaja-dz.onrender.com';
 
 
 document.addEventListener('DOMContentLoaded', () => {
