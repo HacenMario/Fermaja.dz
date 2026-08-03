@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     
     // عرض رسالة "جاري الإرسال..."
-    feedback.textContent = 'جاري الإرسال ⏳';
+    feedback.textContent = '⏳ جاري الإرسال';
     feedback.className = 'feedback';
     feedback.style.color = '#333';
     feedback.style.backgroundColor = '#f0f0f0';
@@ -102,30 +102,31 @@ document.addEventListener('DOMContentLoaded', () => {
       totalPrice 
     };
 
+    // تحديد مهلة للطلب (4 ثوانٍ كحد أقصى)
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('انتهت مهلة الاتصال بالخادم')), 4000);
+    });
+
     try {
       console.log('📤 إرسال الطلب:', orderData);
       
-      // استخدام window.API_BASE المعرف في main.js
-      const response = await fetch(`${window.API_BASE}/api/orders`, {
+      // استخدام Promise.race للتحكم في المهلة
+      const fetchPromise = fetch(`${window.API_BASE}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
       });
 
+      const response = await Promise.race([fetchPromise, timeoutPromise]);
+
       console.log('📥 استجابة الخادم - status:', response.status, response.statusText);
 
+      // محاولة قراءة الاستجابة
       let result;
-      // محاولة قراءة الاستجابة كـ JSON أولاً
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
-        try {
-          result = await response.json();
-        } catch (jsonError) {
-          console.warn('⚠️ فشل تحليل JSON:', jsonError);
-          result = { success: false, error: 'خطأ في تحليل استجابة الخادم' };
-        }
+        result = await response.json();
       } else {
-        // إذا لم تكن JSON، نقرأها كنص (حالة نادرة)
         const text = await response.text();
         console.warn('⚠️ استجابة غير JSON:', text);
         result = { success: false, error: 'استجابة غير متوقعة من الخادم' };
@@ -135,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // التحقق من النجاح
       if (response.ok && result.success) {
-        // ✅ رسالة النجاح
+        // ✅ رسالة النجاح فورية
         feedback.textContent = '✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك.';
         feedback.className = 'feedback success';
         feedback.style.color = '#155724';
@@ -151,17 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.style.backgroundColor = '#f8d7da';
       }
     } catch (error) {
-      // ❌ خطأ في الاتصال أو معالجة JSON
+      // ❌ خطأ في الاتصال أو انتهاء المهلة
       console.error('❌ خطأ في الاتصال أو المعالجة:', error);
-      feedback.textContent = '❌ تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
+      let errorMsg = '❌ تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
+      if (error.message === 'انتهت مهلة الاتصال بالخادم') {
+        errorMsg = '❌ انتهت مهلة الاتصال بالخادم، يرجى المحاولة مرة أخرى.';
+      }
+      feedback.textContent = errorMsg;
       feedback.className = 'feedback error';
       feedback.style.color = '#721c24';
       feedback.style.backgroundColor = '#f8d7da';
     } finally {
-      // إعادة تمكين الزر بعد الانتهاء (سواء نجاح أو فشل)
+      // إعادة تمكين الزر بعد الانتهاء
       if (submitBtn) submitBtn.disabled = false;
-      // التأكد من أن رسالة "جاري الإرسال" قد تغيرت (في حال لم تتغير)
-      if (feedback.textContent === 'جاري الإرسال ...') {
+      // التأكد من أن الرسالة تغيرت (حماية إضافية)
+      if (feedback.textContent === '⏳ جاري الإرسال...') {
         feedback.textContent = '⚠️ حدث خطأ غير معروف، يرجى المحاولة مرة أخرى.';
         feedback.className = 'feedback error';
         feedback.style.color = '#721c24';
