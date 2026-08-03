@@ -1,8 +1,3 @@
-// تحديد عنوان الخادم حسب البيئة
-const API_BASE = window.location.hostname === 'localhost' 
-  ? '' 
-  : 'https://fermaja-dz.onrender.com'; // استبدل برابط Render الفعلي
-
 async function getVapidPublicKey() {
   try {
     const response = await fetch(`${API_BASE}/api/vapid-public-key`);
