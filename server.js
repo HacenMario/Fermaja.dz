@@ -28,7 +28,7 @@ transporter.verify((error, success) => {
 });
 app.set('transporter', transporter);
 
-// ===== إعداد VAPID =====
+// ===== إعداد VAPID ====
 webpush.setVapidDetails(
   process.env.VAPID_SUBJECT,
   process.env.VAPID_PUBLIC_KEY,
