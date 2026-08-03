@@ -1,6 +1,6 @@
 const API_BASE = window.location.hostname === 'localhost' 
   ? '' 
-  : 'https://fermaja-backend.onrender.com';
+  : 'https://fermaja-dz.onrender.com';
 
 
 document.addEventListener('DOMContentLoaded', () => {
