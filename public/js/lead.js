@@ -1,8 +1,3 @@
-// ===== تحديد عنوان الخادم حسب البيئة =====
-const API_BASE = window.location.hostname === 'localhost' 
-  ? '' 
-  : 'https://fermaja-dz.onrender.com';
-
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 lead.js: DOM loaded (نموذج الطلب)');
 
