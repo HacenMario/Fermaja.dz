@@ -183,15 +183,48 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== بدء الاتصال =====
   connectSSE();
 
-  // ===== زر تغيير الوضع =====
-  function toggleTheme() {
-    document.body.classList.toggle('dark');
-    const themeToggle = document.querySelector('#themeToggle');
-    if (themeToggle) {
-      themeToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+// ===== زر العودة إلى الأعلى =====
+(function initBackToTop() {
+  const btn = document.getElementById('backToTopBtn');
+  if (!btn) return;
+
+  // زر العودة إلى الأعلى
+  btn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // إظهار/إخفاء الزر بناءً على التمرير
+  let lastScrollY = 0;
+  let ticking = false;
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY || window.pageYOffset;
+    const triggerPoint = 300; // يظهر بعد 300px من التمرير
+
+    if (currentScrollY > triggerPoint) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
     }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
   }
 
-  const themeToggle = document.querySelector('#themeToggle');
-  if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-});
+  // استخدام requestAnimationFrame لتحسين الأداء
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // التحقق عند التحميل (في حال تم تحميل الصفحة مع تمرير)
+  handleScroll();
+})();
