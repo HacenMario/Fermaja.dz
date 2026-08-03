@@ -1,8 +1,3 @@
-if (!window.API_BASE) {
-  window.API_BASE = window.location.hostname === 'localhost' ? '' : 'https://fermaja-dz.onrender.com';
-}
-console.log('🌐 main.js API_BASE =', window.API_BASE);
-
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🟢 main.js: DOM loaded');
 
