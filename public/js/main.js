@@ -1,3 +1,5 @@
+window.API_BASE = window.location.hostname === 'localhost' ? '' : 'https://fermaja-dz.onrender.com';
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🟢 main.js: DOM loaded');
 
