@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     
     // عرض رسالة "
-    feedback.textContent = ' ✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك';
+    feedback.textContent = 'جاري الإرسال ...';
     feedback.className = 'feedback';
     feedback.style.color = '#333';
     feedback.style.backgroundColor = '#f0f0f0';
