@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // عرض رسالة "جاري الإرسال..."
-    feedback.textContent = '⏳ جاري الإرسال...';
+    // عرض رسالة "
+    feedback.textContent = ' ✅ سنتصل بك في القريب العاجل لتأكيد طلبيتك، شكرا على ثقتك ،تم قبول طلبك بنجاح';
     feedback.className = 'feedback';
     feedback.style.color = '#333';
     feedback.style.backgroundColor = '#f0f0f0';
