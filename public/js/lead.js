@@ -62,6 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
     feedback.className = 'feedback';
     feedback.style.color = '#333';
     feedback.style.backgroundColor = '#f0f0f0';
+    feedback.style.display = 'block';
+
+    // تعطيل زر الإرسال لمنع النقر المتكرر
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
@@ -81,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       feedback.className = 'feedback error';
       feedback.style.color = '#721c24';
       feedback.style.backgroundColor = '#f8d7da';
+      if (submitBtn) submitBtn.disabled = false;
       return;
     }
 
@@ -99,15 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       console.log('📤 إرسال الطلب:', orderData);
       
-      const response = await fetch(`${API_BASE}/api/orders`, {
+      // استخدام window.API_BASE المعرف في main.js
+      const response = await fetch(`${window.API_BASE}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
       });
 
-      console.log('📥 استجابة الخادم:', response.status, response.statusText);
+      console.log('📥 استجابة الخادم - status:', response.status, response.statusText);
 
-      // محاولة قراءة الاستجابة حتى لو لم تكن JSON
+      // محاولة قراءة الاستجابة (حتى لو لم تكن JSON)
       let result;
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
@@ -121,8 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('📦 نتيجة الطلب:', result);
 
+      // التحقق من النجاح
       if (response.ok && result.success) {
-        // ✅ رسالة النجاح المطلوبة
+        // ✅ رسالة النجاح
         feedback.textContent = '✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك.';
         feedback.className = 'feedback success';
         feedback.style.color = '#155724';
@@ -130,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         form.reset();
         setTimeout(calculateTotal, 100);
       } else {
-        // ❌ رسالة الخطأ
+        // ❌ رسالة الخطأ من الخادم
         const errorMsg = result.error || result.message || 'حدث خطأ غير متوقع';
         feedback.textContent = `❌ ${errorMsg}`;
         feedback.className = 'feedback error';
@@ -138,11 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
         feedback.style.backgroundColor = '#f8d7da';
       }
     } catch (error) {
-      console.error('❌ خطأ في الاتصال:', error);
+      // ❌ خطأ في الاتصال أو معالجة JSON
+      console.error('❌ خطأ في الاتصال أو المعالجة:', error);
       feedback.textContent = '❌ تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
       feedback.className = 'feedback error';
       feedback.style.color = '#721c24';
       feedback.style.backgroundColor = '#f8d7da';
+    } finally {
+      // إعادة تمكين الزر بعد الانتهاء (سواء نجاح أو فشل)
+      if (submitBtn) submitBtn.disabled = false;
+      // التأكد من أن رسالة "جاري الإرسال" قد تغيرت (في حال لم تتغير)
+      if (feedback.textContent === '⏳ جاري الإرسال...') {
+        feedback.textContent = '⚠️ حدث خطأ غير معروف، يرجى المحاولة مرة أخرى.';
+        feedback.className = 'feedback error';
+        feedback.style.color = '#721c24';
+        feedback.style.backgroundColor = '#f8d7da';
+      }
     }
   });
 });
