@@ -1,3 +1,11 @@
+const API_BASE = (() => {
+  if (window.location.hostname === 'localhost') return '';
+  if (window.API_BASE) return window.API_BASE;
+  return 'https://fermaja-dz.onrender.com';
+})();
+
+console.log('🌐 push.js API_BASE =', API_BASE);
+
 async function getVapidPublicKey() {
   try {
     const response = await fetch(`${API_BASE}/api/vapid-public-key`);
