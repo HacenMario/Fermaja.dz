@@ -2,6 +2,8 @@ const API_BASE = window.location.hostname === 'localhost'
   ? '' 
   : '  : 'https://fermaja-dz.onrender.com';
 
+const response = await fetch(`${API_BASE}/api/vapid-public-key`);
+
 
 async function getVapidPublicKey() {
   try {
