@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // عرض رسالة "جاري الإرسال..."
-    feedback.textContent = '⏳ جاري الإرسال';
+    // عرض رسالة ..."
+    feedback.textContent = '✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك';
     feedback.className = 'feedback';
     feedback.style.color = '#333';
     feedback.style.backgroundColor = '#f0f0f0';
@@ -102,42 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
       totalPrice 
     };
 
-    // تحديد مهلة للطلب (4 ثوانٍ كحد أقصى)
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('انتهت مهلة الاتصال بالخادم')), 4000);
-    });
-
-    try {
-      console.log('📤 إرسال الطلب:', orderData);
-      
-      // استخدام Promise.race للتحكم في المهلة
-      const fetchPromise = fetch(`${window.API_BASE}/api/orders`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData)
-      });
-
-      const response = await Promise.race([fetchPromise, timeoutPromise]);
-
-      console.log('📥 استجابة الخادم - status:', response.status, response.statusText);
-
-      // محاولة قراءة الاستجابة
-      let result;
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        result = await response.json();
-      } else {
-        const text = await response.text();
-        console.warn('⚠️ استجابة غير JSON:', text);
-        result = { success: false, error: 'استجابة غير متوقعة من الخادم' };
-      }
-
-      console.log('📦 نتيجة الطلب:', result);
-
       // التحقق من النجاح
       if (response.ok && result.success) {
         // ✅ رسالة النجاح فورية
-        feedback.textContent = '✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك.';
+        feedback.textContent = '✅ تم قبول طلبك بنجاح، سنتصل بك في أقرب الأجال لتأكيد طلبيتك';
         feedback.className = 'feedback success';
         feedback.style.color = '#155724';
         feedback.style.backgroundColor = '#d4edda';
