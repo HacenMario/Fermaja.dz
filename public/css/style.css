@@ -717,3 +717,34 @@ footer .social a {
   .hero-text h2 { font-size: 1.6rem; }
   .total-box .total-amount { font-size: 2rem; }
 }
+
+/* تحسين الجداول على الهواتف */
+@media (max-width: 768px) {
+  .orders-table th, .orders-table td {
+    font-size: 0.7rem;
+    padding: 6px 4px;
+  }
+  .orders-table-wrap {
+    padding: 2px;
+  }
+  .admin-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+/* تحسين بطاقات المنتجات */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .menu-card {
+    padding: 20px;
+  }
+}
