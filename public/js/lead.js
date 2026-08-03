@@ -1,3 +1,13 @@
+const API_BASE = (() => {
+  if (window.location.hostname === 'localhost') return '';
+  // إذا كان window.API_BASE معرفاً من config.js، استخدمه
+  if (window.API_BASE) return window.API_BASE;
+  // وإلا استخدم الرابط الافتراضي
+  return 'https://fermaja-dz.onrender.com';
+})();
+
+console.log('🌐 lead.js API_BASE =', API_BASE);
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 lead.js: DOM loaded (نموذج الطلب)');
 
