@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // عرض رسالة "
-    feedback.textContent = 'جاري الإرسال ...';
+    // عرض رسالة "جاري الإرسال..."
+    feedback.textContent = 'جاري الإرسال ⏳';
     feedback.className = 'feedback';
     feedback.style.color = '#333';
     feedback.style.backgroundColor = '#f0f0f0';
@@ -114,13 +114,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log('📥 استجابة الخادم - status:', response.status, response.statusText);
 
-      // محاولة قراءة الاستجابة (حتى لو لم تكن JSON)
       let result;
+      // محاولة قراءة الاستجابة كـ JSON أولاً
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
-        result = await response.json();
+        try {
+          result = await response.json();
+        } catch (jsonError) {
+          console.warn('⚠️ فشل تحليل JSON:', jsonError);
+          result = { success: false, error: 'خطأ في تحليل استجابة الخادم' };
+        }
       } else {
-        // إذا لم تكن JSON، نقرأها كنص
+        // إذا لم تكن JSON، نقرأها كنص (حالة نادرة)
         const text = await response.text();
         console.warn('⚠️ استجابة غير JSON:', text);
         result = { success: false, error: 'استجابة غير متوقعة من الخادم' };
@@ -156,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // إعادة تمكين الزر بعد الانتهاء (سواء نجاح أو فشل)
       if (submitBtn) submitBtn.disabled = false;
       // التأكد من أن رسالة "جاري الإرسال" قد تغيرت (في حال لم تتغير)
-      if (feedback.textContent === '⏳ جاري الإرسال...') {
+      if (feedback.textContent === 'جاري الإرسال ...') {
         feedback.textContent = '⚠️ حدث خطأ غير معروف، يرجى المحاولة مرة أخرى.';
         feedback.className = 'feedback error';
         feedback.style.color = '#721c24';
