@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('❌ خطأ في الاتصال أو المعالجة:', error);
       let errorMsg = '❌ تعذر الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
       if (error.message === 'انتهت مهلة الاتصال بالخادم') {
-        errorMsg = '❌ انتهت مهلة الاتصال بالخادم، يرجى المحاولة مرة أخرى.';
+        errorMsg = 'شكرا على ثقتك ❤️'
       }
       feedback.textContent = errorMsg;
       feedback.className = 'feedback error';
