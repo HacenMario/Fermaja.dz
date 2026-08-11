@@ -1,161 +1,372 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acceuil - الرئيسية</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Favicon -->
-  <link rel="icon" href="images/1.png" type="image/png">
-</head>
+
+<html lang="ar" dir="rtl"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Acceuil - الرئيسية</title>
+
+<meta name="description" content="Fermaja - فرماجة، أشهى ساندويشات الجبن المصنوعة من أجود المكونات الطازجة." />
+<meta name="theme-color" content="#235b35" />
+
+<link rel="stylesheet" href="css/style.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Favicon -->
+
+<link rel="icon" href="images/1.png" type="image/png" />
+
+<!-- تحسين تحميل الصور الرئيسية -->
+
+<link rel="preload" as="image" href="images/2.png" /> </head>
+
 <body>
-  <header>
-    <div class="container">
-      <div class="logo">
-        <img src="images/1.png" alt="Fermaja" class="logo-img" />
-        <h1>فرماجة - Fermaja</h1>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html" data-i18n="nav_home">Acceuil -  الرئيسية</a></li>
-          <li><a href="menu.html" data-i18n="nav_menu">Menu - القائمة</a></li>
-          <li><a href="about.html" data-i18n="nav_about">Qui sommes nous - من نحن</a></li>
-          <li><a href="contact.html" data-i18n="nav_contact">Contact - اتصل بنا</a></li>
-          <li><a href="lead.html" class="btn-lead" data-i18n="nav_order">📩 Commandez maintenant - أطلب الآن</a></li>
-          <li><a href="admin.html">📊Admin dashboard - لوحة التحكم</a></li>
-        </ul>
-        <div class="controls">
-        </div>
-      </nav>
-    </div>
-  </header>
 
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="hero-text">
-        <h2 data-i18n="hero_title">مفرمجة الحالة !  Mfermja lhala</h2>
-        <p data-i18n="hero_desc">نقدم لك أشهى ساندويشات الجبن المصنوعة من أجود المكونات الطازجة. شخصيتنا "فرماجة" هنا لتخدمك!</p>
-        <p data-i18n="hero_desc">‎Voici les sandwiches au fromage les plus délicieux préparés avec les meilleurs ingrédients frais. Notre personnage « Fermaja » est là pour vous servir !‎</p>
-        <a href="lead.html" class="btn-primary" data-i18n="hero_order_btn">📩 Commandez maintenant - أطلب الآن</a>
-        <a href="menu.html" class="btn-secondary" data-i18n="hero_menu_btn">Afficher le menu - استعرض القائمة</a>
-      </div>
-      <div class="hero-image">
-        <img src="images/2.png" alt="Mascot" class="mascot-img" />
-      </div>
-    </div>
-  </section>
+<!-- ===================================================== HEADER ===================================================== -->
 
-  <section class="features">
-    <div class="container">
-      <h3 data-i18n="features_title">? Pourqoi choisir Fermaja - لماذا تختار فرماجة ؟</h3>
-      <div class="feature-grid">
-        <div class="feature-item">
-          <span>🧀</span>
-          <h4 data-i18n="feature1_title">Frommage frais - جبن طازج</h4>
-          <p data-i18n="feature1_desc">نستخدم أفضل أنواع الجبن المحلية والمستوردة</p>
-          <p data-i18n="feature1_desc">Nous utilisons les meilleurs frommages locaux et importés</p>
-        </div>
-        <div class="feature-item">
-          <span>🥖</span>
-          <h4 data-i18n="feature2_title">Pain Frais - خبز طازج</h4>
-          <p data-i18n="feature2_desc">يُخبز يومياً لتقديم قرمشة لا تُقاوم</p>
-          <p data-i18n="feature2_desc">Cuisiné quotidiennement pour donner un croquant irrésistible</p>
-        </div>
-        <div class="feature-item">
-          <span>❤️</span>
-          <h4 data-i18n="feature3_title">Fait avec amour - صنع بحب</h4>
-          <p data-i18n="feature3_desc">كل ساندويش يحضر بشغف ليرضيك</p>
-          <p data-i18n="feature3_desc">Chaque sandwich est préparé avec impatience pour vous plaire</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<header> <div class="container">
 
-  <footer>
-    <div class="container">
-      <p>© فرماجة 2026 , جميع الحقوق محفوظة</p>
-      <p>© Fermaja 2026 , tous droits réservés</p>
-      <div class="social">
-        <a href="https://www.instagram.com/fermaja.food/" target="_blank">📸 Instagram - إنستغرام</a>
-      </div>
-    </div>
-  </footer>
+  <div class="logo">
+    <a href="index.html" aria-label="Fermaja - الرئيسية">
+      <img
+        src="images/1.png"
+        alt="Fermaja"
+        class="logo-img"
+      />
+    </a>
 
-  <!-- زر العودة إلى الأعلى -->
-<button id="backToTopBtn" title="العودة للأعلى" aria-label="Back to top">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="18 15 12 9 6 15"></polyline>
-  </svg>
+    <h1>فرماجة - Fermaja</h1>
+  </div>
+
+  <nav aria-label="Main navigation">
+    <ul>
+
+      <li>
+        <a
+          href="index.html"
+          data-i18n="nav_home"
+          class="active"
+          aria-current="page"
+        >
+          Acceuil - الرئيسية
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="menu.html"
+          data-i18n="nav_menu"
+        >
+          Menu - القائمة
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="about.html"
+          data-i18n="nav_about"
+        >
+          Qui sommes nous - من نحن
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="contact.html"
+          data-i18n="nav_contact"
+        >
+          Contact - اتصل بنا
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="lead.html"
+          class="btn-lead"
+          data-i18n="nav_order"
+        >
+          📩 Commandez maintenant - أطلب الآن
+        </a>
+      </li>
+
+      <li>
+        <a href="admin.html">
+          📊 Admin dashboard - لوحة التحكم
+        </a>
+      </li>
+
+    </ul>
+
+    <div class="controls">
+    </div>
+  </nav>
+
+</div>
+
+</header>
+
+<!-- ===================================================== HERO SECTION ===================================================== -->
+
+<main>
+
+<section class="hero" aria-labelledby="hero-title">
+
+  <div class="container hero-content">
+
+    <div class="hero-text">
+
+      <h2
+        id="hero-title"
+        data-i18n="hero_title"
+      >
+        مفرمجة الحالة ! Mfermja lhala
+      </h2>
+
+      <p data-i18n="hero_desc">
+        نقدم لك أشهى ساندويشات الجبن المصنوعة من أجود المكونات الطازجة.
+        شخصيتنا "فرماجة" هنا لتخدمك!
+      </p>
+
+      <p data-i18n="hero_desc">
+        Voici les sandwiches au fromage les plus délicieux préparés avec
+        les meilleurs ingrédients frais. Notre personnage « Fermaja » est
+        là pour vous servir !
+      </p>
+
+      <div class="hero-actions">
+
+        <a
+          href="lead.html"
+          class="btn-primary"
+          data-i18n="hero_order_btn"
+        >
+          📩 Commandez maintenant - أطلب الآن
+        </a>
+
+        <a
+          href="menu.html"
+          class="btn-secondary"
+          data-i18n="hero_menu_btn"
+        >
+          Afficher le menu - استعرض القائمة
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+      <img
+        src="images/2.png"
+        alt="Mascot Fermaja"
+        class="mascot-img"
+        width="500"
+        height="500"
+        fetchpriority="high"
+      />
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES SECTION
+     ===================================================== -->
+<section
+  class="features"
+  aria-labelledby="features-title"
+>
+
+  <div class="container">
+
+    <h3
+      id="features-title"
+      data-i18n="features_title"
+    >
+      Pourquoi choisir Fermaja - لماذا تختار فرماجة؟
+    </h3>
+
+
+    <div class="feature-grid">
+
+      <!-- Feature 1 -->
+      <article class="feature-item">
+
+        <span
+          aria-hidden="true"
+          role="img"
+          aria-label="Fromage"
+        >
+          🧀
+        </span>
+
+        <h4 data-i18n="feature1_title">
+          Frommage frais - جبن طازج
+        </h4>
+
+        <p data-i18n="feature1_desc">
+          نستخدم أفضل أنواع الجبن المحلية والمستوردة
+        </p>
+
+        <p data-i18n="feature1_desc">
+          Nous utilisons les meilleurs frommages locaux et importés
+        </p>
+
+      </article>
+
+
+      <!-- Feature 2 -->
+      <article class="feature-item">
+
+        <span
+          aria-hidden="true"
+          role="img"
+          aria-label="Pain"
+        >
+          🥖
+        </span>
+
+        <h4 data-i18n="feature2_title">
+          Pain Frais - خبز طازج
+        </h4>
+
+        <p data-i18n="feature2_desc">
+          يُخبز يومياً لتقديم قرمشة لا تُقاوم
+        </p>
+
+        <p data-i18n="feature2_desc">
+          Cuisiné quotidiennement pour donner un croquant irrésistible
+        </p>
+
+      </article>
+
+
+      <!-- Feature 3 -->
+      <article class="feature-item">
+
+        <span
+          aria-hidden="true"
+          role="img"
+          aria-label="Amour"
+        >
+          ❤️
+        </span>
+
+        <h4 data-i18n="feature3_title">
+          Fait avec amour - صنع بحب
+        </h4>
+
+        <p data-i18n="feature3_desc">
+          كل ساندويش يحضر بشغف ليرضيك
+        </p>
+
+        <p data-i18n="feature3_desc">
+          Chaque sandwich est préparé avec impatience pour vous plaire
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<!-- ===================================================== FOOTER ===================================================== -->
+
+<footer>
+
+<div class="container">
+
+  <div class="footer-brand">
+    <div class="logo">
+
+      <img
+        src="images/1.png"
+        alt="Fermaja"
+        class="logo-img"
+        loading="lazy"
+      />
+
+      <h1>فرماجة - Fermaja</h1>
+    </div>
+  </div>
+
+
+  <div class="footer-copyright">
+
+    <p>
+      © فرماجة 2026 , جميع الحقوق محفوظة
+    </p>
+
+    <p>
+      © Fermaja 2026 , tous droits réservés
+    </p>
+
+  </div>
+
+
+  <div class="social">
+
+    <a
+      href="https://www.instagram.com/fermaja.food/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Fermaja Instagram"
+    >
+      📸 Instagram - إنستغرام
+    </a>
+
+  </div>
+
+</div>
+
+</footer>
+
+<!-- ===================================================== BACK TO TOP ===================================================== -->
+
+<button
+id="backToTopBtn"
+title="العودة للأعلى"
+aria-label="Back to top"
+type="button"
+
+
+
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  <polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+
 </button>
 
-<style>
-  /* زر Back to Top - تصميم عصري */
-  #backToTopBtn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 999;
-    background: var(--secondary, #2b5e2b);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    font-size: 1.8rem;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(43, 94, 43, 0.35);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px) scale(0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+<!-- ===================================================== PAGE-SPECIFIC BACK TO TOP STYLES ===================================================== -->
 
-  #backToTopBtn:hover {
-    background: var(--secondary-dark, #1d421d);
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 32px rgba(43, 94, 43, 0.45);
-  }
+<style> #backToTopBtn { position: fixed; bottom: 30px; right: 30px; z-index: 999; background: var(--secondary, #2b5e2b); color: #fff; border: none; border-radius: 50%; width: 56px; height: 56px; font-size: 1.8rem; cursor: pointer; box-shadow: 0 8px 24px rgba(43, 94, 43, 0.35); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.8); display: flex; align-items: center; justify-content: center; } #backToTopBtn:hover { background: var(--secondary-dark, #1d421d); transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(43, 94, 43, 0.45); } #backToTopBtn:active { transform: scale(0.92); } #backToTopBtn.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); } /* الوضع الليلي */ body.dark #backToTopBtn { background: #e6a800; box-shadow: 0 8px 24px rgba(230, 168, 0, 0.35); } body.dark #backToTopBtn:hover { background: #cc9400; box-shadow: 0 12px 32px rgba(230, 168, 0, 0.45); } /* توافق مع الهواتف */ @media (max-width: 768px) { #backToTopBtn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.4rem; } } </style>
 
-  #backToTopBtn:active {
-    transform: scale(0.92);
-  }
+<!-- ===================================================== EXISTING SCRIPTS — DO NOT REMOVE ===================================================== -->
 
-  #backToTopBtn.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-  }
+<script src="js/config.js"></script>
 
-  /* الوضع الليلي */
-  body.dark #backToTopBtn {
-    background: #e6a800;
-    box-shadow: 0 8px 24px rgba(230, 168, 0, 0.35);
-  }
+<script src="js/main.js"></script>
 
-  body.dark #backToTopBtn:hover {
-    background: #cc9400;
-    box-shadow: 0 12px 32px rgba(230, 168, 0, 0.45);
-  }
+<script src="js/push.js"></script>
 
-  /* توافق مع الهواتف */
-  @media (max-width: 768px) {
-    #backToTopBtn {
-      bottom: 20px;
-      right: 20px;
-      width: 48px;
-      height: 48px;
-      font-size: 1.4rem;
-    }
-  }
-</style>
-
-  <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/push.js"></script>
-</body>
-</html>
+</body> </html>
