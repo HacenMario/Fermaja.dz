@@ -2168,3 +2168,184 @@ html[dir="ltr"] .hero-text .btn-secondary {
     transition-duration: .01ms !important;
   }
 }
+
+/* =========================================================
+   FERMAJA FINAL COMPATIBILITY LAYER
+   Visual fixes only — existing selectors and functionality preserved.
+   ========================================================= */
+
+html[dir="rtl"] { direction: rtl; }
+html[dir="ltr"] { direction: ltr; }
+html[dir="rtl"] body { direction: rtl; }
+html[dir="ltr"] body { direction: ltr; }
+
+/* Header / navigation */
+html[dir="rtl"] header .container { direction: rtl; }
+html[dir="ltr"] header .container { direction: ltr; }
+
+/* Language controls */
+.language-switcher,
+.lang-switcher,
+.language-selector,
+.lang-selector,
+#languageSwitcher,
+#langSwitcher {
+  position: relative;
+  z-index: 1100;
+}
+
+.language-switcher button,
+.lang-switcher button,
+.language-selector button,
+.lang-selector button,
+#languageSwitcher button,
+#langSwitcher button {
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.language-switcher button:hover,
+.lang-switcher button:hover,
+.language-selector button:hover,
+.lang-selector button:hover,
+#languageSwitcher button:hover,
+#langSwitcher button:hover {
+  color: var(--green);
+  border-color: var(--gold);
+  background: var(--gold-soft);
+  transform: translateY(-1px);
+}
+
+.language-switcher .active,
+.lang-switcher .active,
+.language-selector .active,
+.lang-selector .active,
+#languageSwitcher .active,
+#langSwitcher .active {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #fff;
+  border-color: transparent;
+}
+
+/* Back to top — keep it visible and correctly positioned */
+#backToTopBtn {
+  position: fixed !important;
+  right: 24px !important;
+  left: auto !important;
+  bottom: 24px !important;
+  top: auto !important;
+  z-index: 9999 !important;
+  width: 50px !important;
+  height: 50px !important;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  cursor: pointer;
+  transition: opacity .25s ease, visibility .25s ease, transform .25s ease, background .25s ease;
+}
+
+#backToTopBtn.show,
+#backToTopBtn.visible,
+#backToTopBtn.active {
+  display: inline-flex !important;
+}
+
+html[dir="rtl"] #backToTopBtn,
+html[dir="ltr"] #backToTopBtn {
+  right: 24px !important;
+  left: auto !important;
+}
+
+#backToTopBtn svg,
+#backToTopBtn i,
+#backToTopBtn span {
+  pointer-events: none;
+}
+
+/* Forms automatically follow the selected language */
+html[dir="rtl"] input,
+html[dir="rtl"] select,
+html[dir="rtl"] textarea {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] input,
+html[dir="ltr"] select,
+html[dir="ltr"] textarea {
+  direction: ltr;
+  text-align: left;
+}
+
+input[type="tel"],
+input[type="number"],
+input[type="date"] {
+  text-align: start;
+}
+
+/* Prevent accidental horizontal overflow */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+/* Admin tables preserve their own horizontal scrolling */
+.orders-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #backToTopBtn {
+    right: 14px !important;
+    left: auto !important;
+    bottom: 14px !important;
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  html[dir="rtl"] #backToTopBtn,
+  html[dir="ltr"] #backToTopBtn {
+    right: 14px !important;
+    left: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #backToTopBtn {
+    right: 12px !important;
+    left: auto !important;
+    bottom: 12px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(217,154,0,.35);
+  outline-offset: 3px;
+}
