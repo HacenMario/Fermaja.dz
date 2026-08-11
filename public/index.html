@@ -2,7 +2,7 @@
 
 <html lang="ar" dir="rtl"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Acceuil - الرئيسية</title>
+<title>الرئيسية</title>
 
 <meta name="description" content="Fermaja - فرماجة، أشهى ساندويشات الجبن المصنوعة من أجود المكونات الطازجة." />
 <meta name="theme-color" content="#235b35" />
@@ -47,7 +47,7 @@
           class="active"
           aria-current="page"
         >
-          Acceuil - الرئيسية
+          الرئيسية
         </a>
       </li>
 
@@ -56,7 +56,7 @@
           href="menu.html"
           data-i18n="nav_menu"
         >
-          Menu - القائمة
+          القائمة
         </a>
       </li>
 
@@ -65,7 +65,7 @@
           href="about.html"
           data-i18n="nav_about"
         >
-          Qui sommes nous - من نحن
+          من نحن
         </a>
       </li>
 
@@ -74,7 +74,7 @@
           href="contact.html"
           data-i18n="nav_contact"
         >
-          Contact - اتصل بنا
+          اتصل بنا
         </a>
       </li>
 
@@ -84,7 +84,7 @@
           class="btn-lead"
           data-i18n="nav_order"
         >
-          📩 Commandez maintenant - أطلب الآن
+          📩 اطلب الآن
         </a>
       </li>
 
@@ -126,11 +126,7 @@
         شخصيتنا "فرماجة" هنا لتخدمك!
       </p>
 
-      <p data-i18n="hero_desc">
-        Voici les sandwiches au fromage les plus délicieux préparés avec
-        les meilleurs ingrédients frais. Notre personnage « Fermaja » est
-        là pour vous servir !
-      </p>
+      
 
       <div class="hero-actions">
 
@@ -139,7 +135,7 @@
           class="btn-primary"
           data-i18n="hero_order_btn"
         >
-          📩 Commandez maintenant - أطلب الآن
+          📩 اطلب الآن
         </a>
 
         <a
@@ -147,7 +143,7 @@
           class="btn-secondary"
           data-i18n="hero_menu_btn"
         >
-          Afficher le menu - استعرض القائمة
+          استعرض القائمة
         </a>
 
       </div>
@@ -205,16 +201,14 @@
         </span>
 
         <h4 data-i18n="feature1_title">
-          Frommage frais - جبن طازج
+          جبن طازج
         </h4>
 
         <p data-i18n="feature1_desc">
           نستخدم أفضل أنواع الجبن المحلية والمستوردة
         </p>
 
-        <p data-i18n="feature1_desc">
-          Nous utilisons les meilleurs frommages locaux et importés
-        </p>
+        
 
       </article>
 
@@ -231,16 +225,14 @@
         </span>
 
         <h4 data-i18n="feature2_title">
-          Pain Frais - خبز طازج
+          خبز طازج
         </h4>
 
         <p data-i18n="feature2_desc">
           يُخبز يومياً لتقديم قرمشة لا تُقاوم
         </p>
 
-        <p data-i18n="feature2_desc">
-          Cuisiné quotidiennement pour donner un croquant irrésistible
-        </p>
+        
 
       </article>
 
@@ -257,16 +249,14 @@
         </span>
 
         <h4 data-i18n="feature3_title">
-          Fait avec amour - صنع بحب
+          صنع بحب
         </h4>
 
         <p data-i18n="feature3_desc">
           كل ساندويش يحضر بشغف ليرضيك
         </p>
 
-        <p data-i18n="feature3_desc">
-          Chaque sandwich est préparé avec impatience pour vous plaire
-        </p>
+        
 
       </article>
 
@@ -333,7 +323,6 @@
 
 <button
 id="backToTopBtn"
-title="العودة للأعلى"
 aria-label="Back to top"
 type="button"
 
@@ -351,7 +340,7 @@ type="button"
   stroke-linecap="round"
   stroke-linejoin="round"
   aria-hidden="true"
->
+ type="button" aria-label="Back to top">
   <polyline points="18 15 12 9 6 15"></polyline>
 </svg>
 
@@ -359,11 +348,12 @@ type="button"
 
 <!-- ===================================================== PAGE-SPECIFIC BACK TO TOP STYLES ===================================================== -->
 
-<style> #backToTopBtn { position: fixed; bottom: 30px; right: 30px; z-index: 999; background: var(--secondary, #2b5e2b); color: #fff; border: none; border-radius: 50%; width: 56px; height: 56px; font-size: 1.8rem; cursor: pointer; box-shadow: 0 8px 24px rgba(43, 94, 43, 0.35); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.8); display: flex; align-items: center; justify-content: center; } #backToTopBtn:hover { background: var(--secondary-dark, #1d421d); transform: translateY(-4px) scale(1.05); box-shadow: 0 12px 32px rgba(43, 94, 43, 0.45); } #backToTopBtn:active { transform: scale(0.92); } #backToTopBtn.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); } /* الوضع الليلي */ body.dark #backToTopBtn { background: #e6a800; box-shadow: 0 8px 24px rgba(230, 168, 0, 0.35); } body.dark #backToTopBtn:hover { background: #cc9400; box-shadow: 0 12px 32px rgba(230, 168, 0, 0.45); } /* توافق مع الهواتف */ @media (max-width: 768px) { #backToTopBtn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.4rem; } } </style>
+
 
 <!-- ===================================================== EXISTING SCRIPTS — DO NOT REMOVE ===================================================== -->
 
-<script src="js/config.js"></script>
+<script src="js/i18n.js"></script>
+  <script src="js/config.js"></script>
 
 <script src="js/main.js"></script>
 
