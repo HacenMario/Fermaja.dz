@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>أطلب  - Commandez</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/1.png" type="image/png">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>أطلب  - Commandez</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="images/1.png" rel="icon" type="image/png"/>
+<style>
     /* تنسيقات النموذج العصري */
     .order-section {
       padding: 30px 0 60px;
@@ -186,149 +187,133 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-      <div class="logo" style="display:flex; align-items:center; gap:10px;">
-        <img src="images/1.png" alt="Fermaja" style="height:48px; width:auto;" />
-        <h1>فرماجة - Fermaja</h1>
-      </div>
-      <nav>
-        <ul style="display:flex; gap:8px; list-style:none; align-items:center; flex-wrap:wrap;">
-          <li><a href="index.html" data-i18n="nav_home">الرئيسية</a></li>
-          <li><a href="menu.html" data-i18n="nav_menu">القائمة</a></li>
-          <li><a href="about.html" data-i18n="nav_about">من نحن</a></li>
-          <li><a href="contact.html" data-i18n="nav_contact">اتصل بنا</a></li>
-          <li><a href="lead.html" class="btn-lead" data-i18n="nav_order">📩 اطلب الآن</a></li>
-          <li><a href="admin.html">📊Admin dashboard - لوحة التحكم</a></li>
-        </ul>
-        <div class="controls" style="display:flex; gap:6px; margin-top:4px;">
-        </div>
-      </nav>
-    </div>
-  </header>
+<header>
+<div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+<div class="logo" style="display:flex; align-items:center; gap:10px;">
+<img alt="فرماجة" src="images/1.png" style="height:48px; width:auto;"/>
+<h1>فرماجة</h1>
+</div>
+<nav>
+<ul style="display:flex; gap:8px; list-style:none; align-items:center; flex-wrap:wrap;">
+<li><a data-i18n="nav_home" href="index.html">الرئيسية</a></li>
+<li><a data-i18n="nav_menu" href="menu.html">القائمة</a></li>
+<li><a data-i18n="nav_about" href="about.html">من نحن</a></li>
+<li><a data-i18n="nav_contact" href="contact.html">اتصل بنا</a></li>
+<li><a class="btn-lead" data-i18n="nav_order" href="lead.html">📩 اطلب الآن</a></li>
+<li><a data-i18n="nav_admin" href="admin.html">📊 لوحة التحكم</a></li>
+</ul>
+<div class="controls" style="display:flex; gap:6px; margin-top:4px;">
+</div>
+</nav>
+</div>
+</header>
+<section class="order-hero">
+<div class="container">
+<span class="emoji-big"></span>
+<h2 data-i18n="lead_title">قدم طلبك الآن</h2>
+<p data-i18n="lead_desc">املأ البيانات وسنتواصل معك قريباً لتأكيد طلبك</p>
 
-  <section class="order-hero">
-    <div class="container">
-      <span class="emoji-big"></span>
-      <h2 data-i18n="lead_title">قدم طلبك الآن - Passer maintenant votre commande</h2>
-      <p data-i18n="lead_desc">املأ البيانات وسنتواصل معك قريباً لتأكيد طلبك</p>
-      
-    </div>
-  </section>
-
-  <section class="order-section">
-    <div class="container">
-      <div class="order-card">
-        <form id="orderForm" novalidate>
-          <!-- ===== بيانات العميل ===== -->
-          <div class="section-title">👤 بيانات الزبون - informations client</div>
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label for="name" data-i18n="lead_name">الإسم الكامل - Nom complet</label>
-              <input type="text" id="name" name="name" placeholder=" أدخل اسمك الكامل - saisir votre nom complet" required />
-            </div>
-            <div class="form-group">
-              <label for="phone" data-i18n="lead_phone">رقم الهاتف - N° de Tel</label>
-              <input type="tel" id="phone" name="phone" placeholder="0xxxxxxxxx" required />
-            </div>
-          </div>
-
-          <!-- ===== الساندويش ===== -->
-          <div class="section-title" style="margin-top:10px;">🧀 Sandwish - الساندويش</div>
-          <div class="form-group">
-            <select id="sandwich" name="sandwich" required>
-              <option value="">-- اختيار الساندويش - Choisir le sandwich --</option>
-              <option value="Fermaja" data-price="250">Fermaja - فرماجة 250 DA</option>
-              <option value="Fermajinho" data-price="350">Fermajinho - فرماجينيو 350 DA</option>
-              <option value="Fermajo" data-price="600">Fermajo - فرماجو 600 DA</option>
-            </select>
-          </div>
-
-          <!-- ===== الإضافات ===== -->
-          <div class="section-title">🧂 الإضافات - Suppléments </div>
-            <label for="supplements">اختياري - Optionnel</label>
-          <div class="supplements-grid-modern" id="supplementsGrid">
-            <label><input type="checkbox" name="supplements" value="Salami - سلامي 100 DA" data-price="100">Salami - سلامي 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Gruyère - غرويار 100 DA" data-price="100">Gruyère - غرويار 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Fromage rouge - فروماج روج 100 DA" data-price="100">Fromage rouge - فروماج روج 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Thon - تونة 100 DA" data-price="100">Thon - تونة 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Kiri - كيري 100 DA" data-price="100">Kiri - كيري 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Gouda - غودا 100 DA" data-price="100">Gouda - غودا 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Cheddar - شيدار 100 DA" data-price="100"> Cheddar - شيدار 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Camembert - كاممبار 100 DA" data-price="100">Camembert - كاممبار 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Paté de volaille - باتي دجاج 100 DA" data-price="100">Paté de volaille - باتي دجاج 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Rôti de poulet fumé - روتي دجاج مدخن 100 DA" data-price="100">Rôti de poulet fumé - روتي دجاج مدخن 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Viande fumée - لحم مدخن 100 DA" data-price="100">Viande fumée - لحم مدخن 100 DA</label>
-            <label><input type="checkbox" name="supplements" value="Paté de volaille Robert - باتي دجاج روبرت 150 DA" data-price="150">Paté de volaille Robert - باتي دجاج روبرت 150 DA</label>
-          </div>
-
-          <!-- ===== التحلية والمشروب ===== -->
-          <div class="section-title" style="margin-top:10px;">🍰 التحلية و المشروبات - Desserts & Boissons</div>
-          <div class="inline-select-group">
-            <div class="form-group">
-              <select id="dessert" name="dessert">
-                <option value="">بدون تحلية - Sans dessert</option>
-                <option value="Tiramisu Nutella" data-price="400">Tiramisu Nutella - تيراميسو نوتيلا 400 DA</option>
-                <option value="Tiramisu Bueno" data-price="400">Tiramisu Bueno - تيراميسو بوينو 400 DA</option>
-                <option value="Tiramisu Speculos" data-price="400">Tiramisu Speculos - تيراميسو سبيكولوس 400 DA</option>
-                <option value="Tiramisu Pistache" data-price="400">Tiramisu Pistache - تيراميسو بندق 400 DA</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <select id="drink" name="drink">
-                <option value="">بدون مشروب - sans boisson</option>
-                <option value="Eau Minérale pm - ماء معدني صغير 50 DA" data-price="50">Eau Minérale pm - ماء معدني صغير 50 DA</option>
-                <option value="Eau gazeuse - ماء غازي 70 DA" data-price="70">Eau gazeuse - ماء غازي 70 DA</option>
-                <option value="Hamoud cannette - حمود كانيطة 100 DA" data-price="100">Hamoud cannette - حمود كانيطة 100 DA</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- ===== البلدية ===== -->
-          <div class="section-title" style="margin-top:10px;">📍 التوصيل - Livraison</div>
-          <div class="form-group">
-            <select id="commune" name="commune" required>
-              <option value="">-- اختيار البلدية- choisir la commune --</option>
-              <option value="القبةKouba - القبة 500 DA" data-fee="500">Kouba - القبة</option>
-              <option value="Berraki - براقي 500 DA" data-fee="500">Berraki - براقي</option>
-              <option value="Alger centre - الجزائر الوسطى 500 DA" data-fee="500">Alger centre - الجزائر الوسطى</option>
-              <option value="Staoueli - سطاولي 500 DA" data-fee="500">Staoueli - سطاولي</option>
-              <option value="Bir Morad Rais - بئر مراد رايس 500 DA" data-fee="500">Bir Morad Rais - بئر مراد رايس</option>
-            </select>
-          </div>
-
-          <!-- ===== السعر النهائي ===== -->
-          <div class="total-card">
-            <span class="label">💰 السعر النهائي - Prix final 💰</span>
-            <span class="amount" id="totalPriceDisplay">0 DA</span>
-          </div>
-
-          <!-- حقول مخفية -->
-          <input type="hidden" name="deliveryFee" id="deliveryFeeHidden" value="0" />
-          <input type="hidden" name="totalPrice" id="totalPriceHidden" value="0" />
-
-          <!-- زر الإرسال -->
-          <button type="submit" class="btn-submit-modern" data-i18n="lead_submit">📨 تقديم الطلب</button>
-          <div id="formFeedback" class="feedback" style="margin-top:14px;"></div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>© فرماجة 2026 , جميع الحقوق محفوظة</p>
-      <p>© Fermaja 2026 , tous droits réservés</p>
-      <div class="social">
-        <a href="https://www.instagram.com/fermaja.food/" target="_blank">📸Instagram - إنستغرام </a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/i18n.js"></script>
-    <script src="js/config.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/lead.js"></script>
-
+</div>
+</section>
+<section class="order-section">
+<div class="container">
+<div class="order-card">
+<form id="orderForm" novalidate="">
+<!-- ===== بيانات العميل ===== -->
+<div class="section-title" data-i18n="client_section">👤 بيانات الزبون</div>
+<div class="form-grid-2">
+<div class="form-group">
+<label data-i18n="lead_name" for="name">الاسم الكامل</label>
+<input id="name" name="name" placeholder=" أدخل اسمك الكامل - saisir votre nom complet" required="" type="text"/>
+</div>
+<div class="form-group">
+<label data-i18n="lead_phone" for="phone">رقم الهاتف</label>
+<input id="phone" name="phone" placeholder="0xxxxxxxxx" required="" type="tel"/>
+</div>
+</div>
+<!-- ===== الساندويش ===== -->
+<div class="section-title" data-i18n="sandwich_section" style="margin-top:10px;">🧀 الساندويش</div>
+<div class="form-group">
+<select id="sandwich" name="sandwich" required="">
+<option data-i18n="choose_sandwich" value="">-- اختر الساندويش --</option>
+<option data-i18n="fermaja_option" data-price="250" value="Fermaja">فرماجا — 250 دج</option>
+<option data-i18n="fermajinho_option" data-price="350" value="Fermajinho">فرماجينيو — 350 دج</option>
+<option data-i18n="fermajo_option" data-price="600" value="Fermajo">فرماجو — 600 دج</option>
+</select>
+</div>
+<!-- ===== الإضافات ===== -->
+<div class="section-title" data-i18n="supplements_section">🧂 الإضافات</div>
+<label data-i18n="optional" for="supplements">اختياري</label>
+<div class="supplements-grid-modern" id="supplementsGrid">
+<label data-i18n="salami">سلامي — 100 دج</label>
+<label data-i18n="gruyere">غرويار — 100 دج</label>
+<label data-i18n="red_cheese">فروماج روج — 100 دج</label>
+<label data-i18n="tuna">تونة — 100 دج</label>
+<label data-i18n="kiri">كيري — 100 دج</label>
+<label data-i18n="gouda">غودا — 100 دج</label>
+<label data-i18n="cheddar">شيدار — 100 دج</label>
+<label data-i18n="camembert">كاممبار — 100 دج</label>
+<label data-i18n="chicken_pate">باتي دجاج — 100 دج</label>
+<label data-i18n="smoked_chicken">روتي دجاج مدخن — 100 دج</label>
+<label data-i18n="smoked_meat">لحم مدخن — 100 دج</label>
+<label data-i18n="robert_pate">باتي دجاج روبرت — 150 دج</label>
+</div>
+<!-- ===== التحلية والمشروب ===== -->
+<div class="section-title" data-i18n="dessert_drinks_section" style="margin-top:10px;">🍰 التحلية والمشروبات</div>
+<div class="inline-select-group">
+<div class="form-group">
+<select id="dessert" name="dessert">
+<option data-i18n="no_dessert" value="">بدون تحلية</option>
+<option data-i18n="tiramisu_nutella" data-price="400" value="Tiramisu Nutella">تيراميسو نوتيلا — 400 دج</option>
+<option data-i18n="tiramisu_bueno" data-price="400" value="Tiramisu Bueno">تيراميسو بوينو — 400 دج</option>
+<option data-i18n="tiramisu_speculos" data-price="400" value="Tiramisu Speculos">تيراميسو سبيكولوس — 400 دج</option>
+<option data-i18n="tiramisu_pistache" data-price="400" value="Tiramisu Pistache">تيراميسو فستق — 400 دج</option>
+</select>
+</div>
+<div class="form-group">
+<select id="drink" name="drink">
+<option data-i18n="no_drink" value="">بدون مشروب</option>
+<option data-i18n="water_small" data-price="50" value="Eau Minérale pm - ماء معدني صغير 50 DA">ماء معدني صغير — 50 دج</option>
+<option data-i18n="sparkling_water" data-price="70" value="Eau gazeuse - ماء غازي 70 DA">ماء غازي — 70 دج</option>
+<option data-i18n="hamoud" data-price="100" value="Hamoud cannette - حمود كانيطة 100 DA">حمود كانيطة — 100 دج</option>
+</select>
+</div>
+</div>
+<!-- ===== البلدية ===== -->
+<div class="section-title" data-i18n="delivery_section" style="margin-top:10px;">📍 التوصيل</div>
+<div class="form-group">
+<select id="commune" name="commune" required="">
+<option data-i18n="choose_commune" value="">-- اختر البلدية --</option>
+<option data-fee="500" data-i18n="kouba" value="القبةKouba - القبة 500 DA">القبة</option>
+<option data-fee="500" data-i18n="berraki" value="Berraki - براقي 500 DA">براقي</option>
+<option data-fee="500" data-i18n="alger_centre" value="Alger centre - الجزائر الوسطى 500 DA">الجزائر الوسطى</option>
+<option data-fee="500" data-i18n="staoueli" value="Staoueli - سطاولي 500 DA">سطاولي</option>
+<option data-fee="500" data-i18n="bir_morad_rais" value="Bir Morad Rais - بئر مراد رايس 500 DA">بئر مراد رايس</option>
+</select>
+</div>
+<!-- ===== السعر النهائي ===== -->
+<div class="total-card" data-i18n="final_price">💰 السعر النهائي</div>
+<!-- حقول مخفية -->
+<input id="deliveryFeeHidden" name="deliveryFee" type="hidden" value="0">
+<input id="totalPriceHidden" name="totalPrice" type="hidden" value="0">
+<!-- زر الإرسال -->
+<button class="btn-submit-modern" data-i18n="lead_submit" type="submit">📨 تقديم الطلب</button>
+<div class="feedback" id="formFeedback" style="margin-top:14px;"></div>
+</input></input></form>
+</div>
+</div>
+</section>
+<footer>
+<div class="container">
+<p data-i18n="footer_rights">© فرماجة 2026، جميع الحقوق محفوظة</p>
+<p data-i18n="footer_rights">© فرماجة 2026، جميع الحقوق محفوظة</p>
+<div class="social">
+<a data-i18n="footer_instagram" href="https://www.instagram.com/fermaja.food/" target="_blank">📸 إنستغرام</a>
+</div>
+</div>
+</footer>
+<script src="js/i18n.js"></script><script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/lead.js"></script>
 </body>
 </html>
