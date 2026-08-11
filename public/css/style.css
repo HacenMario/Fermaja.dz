@@ -2349,3 +2349,458 @@ textarea:focus-visible {
   outline: 3px solid rgba(217,154,0,.35);
   outline-offset: 3px;
 }
+
+/* =========================================================
+   FERMAJA LANGUAGE POPUP - FINAL FIX
+   ---------------------------------------------------------
+   Isolated language selector styling.
+   This section intentionally uses !important where needed
+   to prevent conflicts with global nav/button styles.
+   ========================================================= */
+
+/* Overlay */
+.language-modal,
+.language-popup,
+.lang-modal,
+.lang-popup,
+.language-picker-modal,
+.language-selector-modal,
+#languageModal,
+#languagePopup,
+#langModal,
+#langPopup {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 20px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-sizing: border-box !important;
+
+  background: rgba(10, 18, 13, .48) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  z-index: 99999 !important;
+
+  direction: ltr !important;
+}
+
+/* Popup card */
+.language-modal > div,
+.language-popup > div,
+.lang-modal > div,
+.lang-popup > div,
+.language-picker-modal > div,
+.language-selector-modal > div,
+#languageModal > div,
+#languagePopup > div,
+#langModal > div,
+#langPopup > div {
+  position: relative !important;
+
+  width: min(420px, 100%) !important;
+  max-width: 420px !important;
+  min-width: 0 !important;
+
+  margin: 0 auto !important;
+  padding: 28px !important;
+
+  box-sizing: border-box !important;
+
+  background: var(--white, #ffffff) !important;
+  color: var(--text, #222823) !important;
+
+  border: 1px solid rgba(35, 91, 53, .10) !important;
+  border-radius: 24px !important;
+
+  box-shadow:
+    0 25px 70px rgba(10, 25, 15, .22),
+    0 5px 20px rgba(10, 25, 15, .08) !important;
+
+  text-align: center !important;
+
+  direction: ltr !important;
+
+  overflow: hidden !important;
+
+  animation: fermajaLanguagePopup .25s ease-out;
+}
+
+/* Popup title */
+.language-modal h1,
+.language-modal h2,
+.language-modal h3,
+.language-popup h1,
+.language-popup h2,
+.language-popup h3,
+.lang-modal h1,
+.lang-modal h2,
+.lang-modal h3,
+.lang-popup h1,
+.lang-popup h2,
+.lang-popup h3,
+.language-picker-modal h1,
+.language-picker-modal h2,
+.language-picker-modal h3,
+.language-selector-modal h1,
+.language-selector-modal h2,
+.language-selector-modal h3,
+#languageModal h1,
+#languageModal h2,
+#languageModal h3,
+#languagePopup h1,
+#languagePopup h2,
+#languagePopup h3,
+#langModal h1,
+#langModal h2,
+#langModal h3,
+#langPopup h1,
+#langPopup h2,
+#langPopup h3 {
+  margin: 0 0 20px !important;
+  padding: 0 !important;
+
+  width: 100% !important;
+
+  color: var(--green, #235b35) !important;
+
+  font-family: inherit !important;
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  line-height: 1.5 !important;
+
+  text-align: center !important;
+}
+
+/* Language buttons container */
+.language-modal .languages,
+.language-modal .language-options,
+.language-modal .lang-options,
+.language-popup .languages,
+.language-popup .language-options,
+.language-popup .lang-options,
+.lang-modal .languages,
+.lang-modal .language-options,
+.lang-modal .lang-options,
+.lang-popup .languages,
+.lang-popup .language-options,
+.lang-popup .lang-options,
+.language-picker-modal .languages,
+.language-picker-modal .language-options,
+.language-selector-modal .languages,
+.language-selector-modal .language-options,
+#languageModal .languages,
+#languageModal .language-options,
+#languagePopup .languages,
+#languagePopup .language-options,
+#langModal .languages,
+#langModal .language-options,
+#langPopup .languages,
+#langPopup .language-options {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+
+  gap: 10px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  list-style: none !important;
+
+  box-sizing: border-box !important;
+}
+
+/* Buttons */
+.language-modal button,
+.language-popup button,
+.lang-modal button,
+.lang-popup button,
+.language-picker-modal button,
+.language-selector-modal button,
+#languageModal button,
+#languagePopup button,
+#langModal button,
+#langPopup button {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  min-height: 52px !important;
+
+  margin: 0 !important;
+  padding: 12px 18px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-sizing: border-box !important;
+
+  border: 1px solid rgba(35, 91, 53, .10) !important;
+  border-radius: 14px !important;
+
+  background: #fbfaf6 !important;
+  color: var(--text, #222823) !important;
+
+  font-family: inherit !important;
+  font-size: .95rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+
+  text-align: center !important;
+
+  cursor: pointer !important;
+
+  white-space: normal !important;
+
+  transform: none !important;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease !important;
+}
+
+/* Remove global button pseudo elements */
+.language-modal button::before,
+.language-modal button::after,
+.language-popup button::before,
+.language-popup button::after,
+.lang-modal button::before,
+.lang-modal button::after,
+.lang-popup button::before,
+.lang-popup button::after,
+.language-picker-modal button::before,
+.language-picker-modal button::after,
+.language-selector-modal button::before,
+.language-selector-modal button::after,
+#languageModal button::before,
+#languageModal button::after,
+#languagePopup button::before,
+#languagePopup button::after,
+#langModal button::before,
+#langModal button::after,
+#langPopup button::before,
+#langPopup button::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Hover */
+.language-modal button:hover,
+.language-popup button:hover,
+.lang-modal button:hover,
+.lang-popup button:hover,
+.language-picker-modal button:hover,
+.language-selector-modal button:hover,
+#languageModal button:hover,
+#languagePopup button:hover,
+#langModal button:hover,
+#langPopup button:hover {
+  background: var(--gold-soft, rgba(217,154,0,.10)) !important;
+  color: var(--green, #235b35) !important;
+
+  border-color: var(--gold, #d99a00) !important;
+
+  box-shadow: 0 8px 22px rgba(35,91,53,.08) !important;
+
+  transform: translateY(-2px) !important;
+}
+
+/* Active language */
+.language-modal button.active,
+.language-modal button.selected,
+.language-modal button[aria-selected="true"],
+.language-popup button.active,
+.language-popup button.selected,
+.language-popup button[aria-selected="true"],
+.lang-modal button.active,
+.lang-modal button.selected,
+.lang-modal button[aria-selected="true"],
+.lang-popup button.active,
+.lang-popup button.selected,
+.lang-popup button[aria-selected="true"],
+#languageModal button.active,
+#languageModal button.selected,
+#languageModal button[aria-selected="true"],
+#languagePopup button.active,
+#languagePopup button.selected,
+#languagePopup button[aria-selected="true"],
+#langModal button.active,
+#langModal button.selected,
+#langModal button[aria-selected="true"],
+#langPopup button.active,
+#langPopup button.selected,
+#langPopup button[aria-selected="true"] {
+  background: linear-gradient(
+    135deg,
+    var(--green, #235b35),
+    var(--green-dark, #173f25)
+  ) !important;
+
+  color: #ffffff !important;
+
+  border-color: transparent !important;
+
+  box-shadow: 0 10px 25px rgba(35,91,53,.18) !important;
+}
+
+/* Close button */
+.language-modal .close,
+.language-popup .close,
+.lang-modal .close,
+.lang-popup .close,
+.language-picker-modal .close,
+.language-selector-modal .close,
+#languageModal .close,
+#languagePopup .close,
+#langModal .close,
+#langPopup .close {
+  position: absolute !important;
+
+  top: 12px !important;
+  right: 12px !important;
+
+  width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border-radius: 50% !important;
+
+  background: rgba(35,91,53,.06) !important;
+  color: var(--green, #235b35) !important;
+
+  font-size: 1.2rem !important;
+
+  border: none !important;
+}
+
+.language-modal .close:hover,
+.language-popup .close:hover,
+.lang-modal .close:hover,
+.lang-popup .close:hover,
+.language-picker-modal .close:hover,
+.language-selector-modal .close:hover,
+#languageModal .close:hover,
+#languagePopup .close:hover,
+#langModal .close:hover,
+#langPopup .close:hover {
+  background: #dc3545 !important;
+  color: #ffffff !important;
+}
+
+/* RTL text inside popup only */
+html[dir="rtl"] .language-modal,
+html[dir="rtl"] .language-popup,
+html[dir="rtl"] .lang-modal,
+html[dir="rtl"] .lang-popup,
+html[dir="rtl"] .language-picker-modal,
+html[dir="rtl"] .language-selector-modal,
+html[dir="rtl"] #languageModal,
+html[dir="rtl"] #languagePopup,
+html[dir="rtl"] #langModal,
+html[dir="rtl"] #langPopup {
+  direction: rtl !important;
+}
+
+/* Keep the actual language controls visually consistent */
+html[dir="rtl"] .language-modal > div,
+html[dir="rtl"] .language-popup > div,
+html[dir="rtl"] .lang-modal > div,
+html[dir="rtl"] .lang-popup > div,
+html[dir="rtl"] #languageModal > div,
+html[dir="rtl"] #languagePopup > div,
+html[dir="rtl"] #langModal > div,
+html[dir="rtl"] #langPopup > div {
+  direction: rtl !important;
+}
+
+html[dir="ltr"] .language-modal > div,
+html[dir="ltr"] .language-popup > div,
+html[dir="ltr"] .lang-modal > div,
+html[dir="ltr"] .lang-popup > div,
+html[dir="ltr"] #languageModal > div,
+html[dir="ltr"] #languagePopup > div,
+html[dir="ltr"] #langModal > div,
+html[dir="ltr"] #langPopup > div {
+  direction: ltr !important;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+  .language-modal,
+  .language-popup,
+  .lang-modal,
+  .lang-popup,
+  .language-picker-modal,
+  .language-selector-modal,
+  #languageModal,
+  #languagePopup,
+  #langModal,
+  #langPopup {
+    padding: 14px !important;
+  }
+
+  .language-modal > div,
+  .language-popup > div,
+  .lang-modal > div,
+  .lang-popup > div,
+  .language-picker-modal > div,
+  .language-selector-modal > div,
+  #languageModal > div,
+  #languagePopup > div,
+  #langModal > div,
+  #langPopup > div {
+    width: 100% !important;
+    max-width: 360px !important;
+    padding: 22px 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .language-modal button,
+  .language-popup button,
+  .lang-modal button,
+  .lang-popup button,
+  .language-picker-modal button,
+  .language-selector-modal button,
+  #languageModal button,
+  #languagePopup button,
+  #langModal button,
+  #langPopup button {
+    min-height: 48px !important;
+    font-size: .9rem !important;
+  }
+}
+
+/* Animation */
+@keyframes fermajaLanguagePopup {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
