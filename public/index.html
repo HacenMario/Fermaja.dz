@@ -1,362 +1,240 @@
 <!DOCTYPE html>
 
-<html lang="ar" dir="rtl"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>الرئيسية</title>
-
-<meta name="description" content="Fermaja - فرماجة، أشهى ساندويشات الجبن المصنوعة من أجود المكونات الطازجة." />
-<meta name="theme-color" content="#235b35" />
-
-<link rel="stylesheet" href="css/style.css" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" /> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-<!-- Favicon -->
-
-<link rel="icon" href="images/1.png" type="image/png" />
-
-<!-- تحسين تحميل الصور الرئيسية -->
-
-<link rel="preload" as="image" href="images/2.png" /> </head>
-
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="login_title">لوحة التحكم</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="images/1.png" rel="icon" type="image/png"/>
+<style>
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid rgba(230,168,0,0.08);
+    }
+    .stat-card .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--btn-primary-bg);
+    }
+    .stat-card .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 5px;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 18px 22px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 25px;
+    }
+    .filter-bar label {
+      font-weight: 700;
+    }
+    .filter-bar input[type="date"] {
+      padding: 10px 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+    }
+    .filter-bar button {
+      padding: 10px 24px;
+      background: var(--btn-secondary-bg);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .filter-bar button:hover {
+      background: var(--btn-secondary-hover);
+    }
+    .orders-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin: 20px 0;
+    }
+    .summary-item {
+      text-align: center;
+    }
+    .summary-item .amount {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--btn-primary-bg);
+    }
+    .orders-table-wrap {
+      overflow-x: auto;
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 5px;
+    }
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .orders-table th {
+      background: var(--header-bg);
+      padding: 14px 12px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--text-color);
+      border-bottom: 2px solid var(--border-color);
+    }
+    .orders-table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+    .orders-table tr:hover {
+      background: rgba(230,168,0,0.04);
+    }
+    .status-badge {
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-block;
+    }
+    .status-new { background: #ffc107; color: #333; }
+    .status-accepted { background: #28a745; color: #fff; }
+    .status-rejected { background: #dc3545; color: #fff; }
+    .status-completed { background: #17a2b8; color: #fff; }
+    .btn-status {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin: 2px;
+      transition: 0.3s;
+    }
+    .btn-status:hover { transform: scale(1.05); }
+    .btn-accept { background: #28a745; color: #fff; }
+    .btn-reject { background: #dc3545; color: #fff; }
+    .btn-complete { background: #17a2b8; color: #fff; }
+    .no-orders { padding: 40px; text-align: center; opacity: 0.6; }
+    @media (max-width: 768px) {
+      .filter-bar { flex-direction: column; align-items: stretch; }
+      .orders-table th, .orders-table td { font-size: 0.75rem; padding: 8px 5px; }
+      .stat-card .stat-number { font-size: 1.6rem; }
+    }
+    @media print {
+      .filter-bar, .btn-status, .no-print { display: none; }
+    }
+  </style>
+</head>
 <body>
-
-<!-- ===================================================== HEADER ===================================================== -->
-
-<header> <div class="container">
-
-  <div class="logo">
-    <a href="index.html" aria-label="Fermaja - الرئيسية">
-      <img
-        src="images/1.png"
-        alt="Fermaja"
-        class="logo-img"
-      />
-    </a>
-
-    <h1>فرماجة - Fermaja</h1>
-  </div>
-
-  <nav aria-label="Main navigation">
-    <ul>
-
-      <li>
-        <a
-          href="index.html"
-          data-i18n="nav_home"
-          class="active"
-          aria-current="page"
-        >
-          الرئيسية
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="menu.html"
-          data-i18n="nav_menu"
-        >
-          القائمة
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="about.html"
-          data-i18n="nav_about"
-        >
-          من نحن
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="contact.html"
-          data-i18n="nav_contact"
-        >
-          اتصل بنا
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="lead.html"
-          class="btn-lead"
-          data-i18n="nav_order"
-        >
-          📩 اطلب الآن
-        </a>
-      </li>
-
-      <li>
-        <a href="admin.html">
-          📊 Admin dashboard - لوحة التحكم
-        </a>
-      </li>
-
-    </ul>
-
-    <div class="controls">
-    </div>
-  </nav>
-
+<header>
+<div class="container admin-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+<div class="logo" data-i18n="login_title" style="display:flex; align-items:center; gap:10px;">لوحة التحكم</div>
+<nav>
+<ul style="display:flex; gap:15px; list-style:none; align-items:center;">
+<li><a data-i18n="nav_home" href="index.html">الرئيسية</a></li>
+<li><a class="active" data-i18n="admin_nav_orders" href="admin.html">الطلبات</a></li>
+<li><button data-i18n="logout" onclick="logout()" style="background:#dc3545;color:#fff;border:none;padding:8px 18px;border-radius:30px;cursor:pointer;font-weight:700;">خروج 🚪</button></li>
+</ul>
+</nav>
 </div>
-
 </header>
-
-<!-- ===================================================== HERO SECTION ===================================================== -->
-
-<main>
-
-<section class="hero" aria-labelledby="hero-title">
-
-  <div class="container hero-content">
-
-    <div class="hero-text">
-
-      <h2
-        id="hero-title"
-        data-i18n="hero_title"
-      >
-        مفرمجة الحالة ! Mfermja lhala
-      </h2>
-
-      <p data-i18n="hero_desc">
-        نقدم لك أشهى ساندويشات الجبن المصنوعة من أجود المكونات الطازجة.
-        شخصيتنا "فرماجة" هنا لتخدمك!
-      </p>
-
-      
-
-      <div class="hero-actions">
-
-        <a
-          href="lead.html"
-          class="btn-primary"
-          data-i18n="hero_order_btn"
-        >
-          📩 اطلب الآن
-        </a>
-
-        <a
-          href="menu.html"
-          class="btn-secondary"
-          data-i18n="hero_menu_btn"
-        >
-          استعرض القائمة
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="hero-image">
-
-      <img
-        src="images/2.png"
-        alt="Mascot Fermaja"
-        class="mascot-img"
-        width="500"
-        height="500"
-        fetchpriority="high"
-      />
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FEATURES SECTION
-     ===================================================== -->
-<section
-  class="features"
-  aria-labelledby="features-title"
->
-
-  <div class="container">
-
-    <h3
-      id="features-title"
-      data-i18n="features_title"
-    >
-      Pourquoi choisir Fermaja - لماذا تختار فرماجة؟
-    </h3>
-
-
-    <div class="feature-grid">
-
-      <!-- Feature 1 -->
-      <article class="feature-item">
-
-        <span
-          aria-hidden="true"
-          role="img"
-          aria-label="Fromage"
-        >
-          🧀
-        </span>
-
-        <h4 data-i18n="feature1_title">
-          جبن طازج
-        </h4>
-
-        <p data-i18n="feature1_desc">
-          نستخدم أفضل أنواع الجبن المحلية والمستوردة
-        </p>
-
-        
-
-      </article>
-
-
-      <!-- Feature 2 -->
-      <article class="feature-item">
-
-        <span
-          aria-hidden="true"
-          role="img"
-          aria-label="Pain"
-        >
-          🥖
-        </span>
-
-        <h4 data-i18n="feature2_title">
-          خبز طازج
-        </h4>
-
-        <p data-i18n="feature2_desc">
-          يُخبز يومياً لتقديم قرمشة لا تُقاوم
-        </p>
-
-        
-
-      </article>
-
-
-      <!-- Feature 3 -->
-      <article class="feature-item">
-
-        <span
-          aria-hidden="true"
-          role="img"
-          aria-label="Amour"
-        >
-          ❤️
-        </span>
-
-        <h4 data-i18n="feature3_title">
-          صنع بحب
-        </h4>
-
-        <p data-i18n="feature3_desc">
-          كل ساندويش يحضر بشغف ليرضيك
-        </p>
-
-        
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<!-- ===================================================== FOOTER ===================================================== -->
-
-<footer>
-
+<section class="page-section" style="padding:40px 0;">
 <div class="container">
-
-  <div class="footer-brand">
-    <div class="logo">
-
-      <img
-        src="images/1.png"
-        alt="Fermaja"
-        class="logo-img"
-        loading="lazy"
-      />
-
-      <h1>فرماجة - Fermaja</h1>
-    </div>
-  </div>
-
-
-  <div class="footer-copyright">
-
-    <p>
-      © فرماجة 2026 , جميع الحقوق محفوظة
-    </p>
-
-    <p>
-      © Fermaja 2026 , tous droits réservés
-    </p>
-
-  </div>
-
-
-  <div class="social">
-
-    <a
-      href="https://www.instagram.com/fermaja.food/"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Fermaja Instagram"
-    >
-      📸 Instagram - إنستغرام
-    </a>
-
-  </div>
-
+<h2 data-i18n="admin_title">📋 إدارة الطلبات</h2>
+<p class="subtitle" data-i18n="admin_subtitle">مراقبة وتحديث الطلبات مع إحصائيات فورية</p>
+<!-- إحصائيات سريعة -->
+<div class="admin-stats" id="statsContainer">
+<div class="stat-card"><div class="stat-number" id="totalOrders">0</div><div class="stat-label" data-i18n="admin_total">إجمالي الطلبات</div></div>
+<div class="stat-card"><div class="stat-number" id="newOrders">0</div><div class="stat-label" data-i18n="admin_new">جديد</div></div>
+<div class="stat-card"><div class="stat-number" id="acceptedOrders">0</div><div class="stat-label" data-i18n="admin_accepted">مقبول</div></div>
+<div class="stat-card"><div class="stat-number" id="completedOrders">0</div><div class="stat-label" data-i18n="admin_completed">مكتمل</div></div>
 </div>
-
-</footer>
-
-<!-- ===================================================== BACK TO TOP ===================================================== -->
-
-<button
-id="backToTopBtn"
-aria-label="Back to top"
-type="button"
-
-
-
-
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  aria-hidden="true"
- type="button" aria-label="Back to top">
-  <polyline points="18 15 12 9 6 15"></polyline>
-</svg>
-
-</button>
-
-<!-- ===================================================== PAGE-SPECIFIC BACK TO TOP STYLES ===================================================== -->
-
-
-
-<!-- ===================================================== EXISTING SCRIPTS — DO NOT REMOVE ===================================================== -->
-
-<script src="js/i18n.js"></script>
-  <script src="js/config.js"></script>
-
-<script src="js/main.js"></script>
-
-<script src="js/push.js"></script>
-
-</body> </html>
+<!-- فلترة حسب اليوم -->
+<div class="filter-bar">
+<label data-i18n="filter_date" for="filterDate">📅 تصفية حسب اليوم</label>
+<input id="filterDate" type="date"/>
+<button onclick="applyFilter()">🔍</button>
+<button data-i18n="filter_reset" onclick="resetFilter()" style="background:#6c757d;">🔄 إلغاء الفلترة</button>
+<span data-i18n="filter_all" id="filterLabel" style="margin-right:auto;font-weight:700;">عرض الكل</span>
+</div>
+<!-- ملخص المبالغ -->
+<div class="orders-summary" id="summaryContainer">
+<div class="summary-item"><div class="amount" id="sumWithDelivery">0 DA</div><div data-i18n="total_with_delivery">💰 الإجمالي مع التوصيل</div></div>
+<div class="summary-item"><div class="amount" id="sumWithoutDelivery">0 DA</div><div data-i18n="total_without_delivery">💰 الإجمالي بدون التوصيل</div></div>
+<div class="summary-item"><div class="amount" id="deliveryTotal">0 DA</div><div data-i18n="delivery_fees">🚚 مصاريف التوصيل</div></div>
+</div>
+<!-- جدول الطلبات -->
+<div class="orders-table-wrap">
+<table class="orders-table" id="ordersTable">
+<thead>
+<tr>
+<th>#</th>
+<th data-i18n="th_name">الاسم الكامل</th>
+<th data-i18n="th_phone">رقم الهاتف</th>
+<th data-i18n="th_sandwich">الساندويش</th>
+<th data-i18n="th_supplement">الإضافات</th>
+<th data-i18n="th_dessert">التحلية</th>
+<th data-i18n="th_drink">المشروب</th>
+<th data-i18n="th_commune">البلدية</th>
+<th data-i18n="th_price">السعر بدون التوصيل</th>
+<th data-i18n="th_delivery">مصاريف التوصيل</th>
+<th data-i18n="th_total">الإجمالي</th>
+<th data-i18n="th_date">التاريخ</th>
+<th data-i18n="th_status">الحالة</th>
+<th class="no-print" data-i18n="th_actions">الإجراءات</th>
+</tr>
+</thead>
+<tbody id="ordersBody">
+<!-- سيتم ملء البيانات -->
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<footer>
+<div class="container">
+<p data-i18n="footer_rights">© فرماجة 2026، جميع الحقوق محفوظة</p>
+<p data-i18n="footer_rights">© فرماجة 2026، جميع الحقوق محفوظة</p>
+<div class="social">
+<a data-i18n="footer_instagram" href="https://www.instagram.com/fermaja.food/" target="_blank">📸 إنستغرام</a>
+</div>
+</div></footer>
+<script src="js/admin.js"></script>
+<script>
+    function logout() {
+      sessionStorage.removeItem('isLoggedIn');
+      window.location.href = '/login.html';
+    }
+    // التحقق من تسجيل الدخول
+    if (!sessionStorage.getItem('isLoggedIn')) {
+      window.location.href = '/login.html';
+    }
+  </script><script src="js/i18n.js"></script><script src="js/config.js"></script>
+</body>
+</html>
