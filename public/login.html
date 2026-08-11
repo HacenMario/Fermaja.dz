@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title data-i18n="login_title">لوحة التحكم</title>
-<link href="css/style.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="images/1.png" rel="icon" type="image/png"/>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fermaja - admin dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/1.png" type="image/png">
+  <style>
     .login-section {
       min-height: 80vh;
       display: flex;
@@ -52,24 +51,108 @@
     .login-error { color: #dc3545; text-align: center; margin-top: 15px; font-weight: 700; }
     .login-logo { text-align: center; font-size: 4rem; margin-bottom: 10px; }
   </style>
+
+<style id="fermaja-login-ui">
+  .fermaja-login-page {
+    min-height: calc(100vh - 160px);
+    display: grid;
+    place-items: center;
+    padding: 50px 20px 70px;
+  }
+
+  .fermaja-login-page .login-container,
+  .fermaja-login-page .login-box,
+  .fermaja-login-page .auth-container {
+    width: min(100%, 460px);
+    margin-inline: auto;
+  }
+
+  .fermaja-login-page form {
+    width: 100%;
+    padding: 34px;
+    border-radius: 24px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid rgba(35,91,53,.12);
+    box-shadow: 0 24px 70px rgba(20,35,25,.12);
+  }
+
+  .fermaja-login-page input {
+    width: 100%;
+    min-height: 50px;
+    box-sizing: border-box;
+    border: 1px solid rgba(35,91,53,.16);
+    border-radius: 12px;
+    padding: 12px 15px;
+    font: inherit;
+    outline: none;
+    transition: .2s ease;
+  }
+
+  .fermaja-login-page input:focus {
+    border-color: rgba(35,91,53,.55);
+    box-shadow: 0 0 0 4px rgba(35,91,53,.08);
+  }
+
+  .fermaja-login-page button[type="submit"] {
+    width: 100%;
+    min-height: 50px;
+    border: 0;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s ease;
+  }
+
+  .fermaja-login-page button[type="submit"]:hover {
+    transform: translateY(-1px);
+  }
+
+  html[dir="rtl"] .fermaja-login-page input {
+    text-align: right;
+  }
+
+  html[dir="ltr"] .fermaja-login-page input {
+    text-align: left;
+  }
+
+  @media (max-width: 600px) {
+    .fermaja-login-page {
+      padding: 30px 15px 50px;
+    }
+
+    .fermaja-login-page form {
+      padding: 24px 18px;
+      border-radius: 18px;
+    }
+  }
+</style>
+
 </head>
 <body>
-<section class="login-section">
-<div class="login-card">
-<div class="login-logo">🧀</div>
-<h2 data-i18n="login_title">لوحة التحكم</h2>
-<p class="sub" data-i18n="login_sub">يرجى تسجيل الدخول للمتابعة</p>
-<form id="loginForm">
-<div class="form-group" data-i18n="username">اسم المستخدم</div>
-<div class="form-group" data-i18n="password">كلمة المرور</div>
-<button class="login-btn" data-i18n="login_button" type="submit">🚀 تسجيل الدخول</button>
-<div class="login-error" id="loginError"></div>
-</form>
-<div style="text-align:center;margin-top:20px;font-size:0.9rem;opacity:0.6;">
-</div>
-</div>
-</section>
-<script>
+  <section class="login-section">
+    <div class="login-card">
+      <div class="login-logo">🧀</div>
+      <h2>لوحة التحكم</h2>
+      <p class="sub">يرجى تسجيل الدخول للمتابعة</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username"><span data-i18n="username_label">اسم المستخدم</span></label>
+          <input type="text" id="username" placeholder="admin" required />
+        </div>
+        <div class="form-group">
+          <label for="password"><span data-i18n="password_label">كلمة المرور</span></label>
+          <input type="password" id="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="login-btn">🚀 تسجيل الدخول</button>
+        <div id="loginError" class="login-error"></div>
+      </form>
+      <div style="text-align:center;margin-top:20px;font-size:0.9rem;opacity:0.6;">
+      </div>
+    </div>
+  </section>
+
+  <script>
     // ===== تحديد عنوان الخادم حسب البيئة =====
     const API_BASE = window.location.hostname === 'localhost' 
       ? '' 
@@ -107,5 +190,6 @@
       }
     });
   </script>
-<script src="js/i18n.js"></script></body>
+  <script src="js/i18n.js"></script>
+</body>
 </html>
