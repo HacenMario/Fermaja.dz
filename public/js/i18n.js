@@ -42,6 +42,7 @@
     "contact_address": {ar:"📍 القبة، الجزائر العاصمة",fr:"📍 Kouba, Alger",en:"📍 Kouba, Algiers"},
     "contact_phone": {ar:"📱 0550074864",fr:"📱 0550074864",en:"📱 0550074864"},
     "contact_hours": {ar:"🕒 ساعات العمل: 11:00 - 23:00",fr:"🕒 Heures d’ouverture : 11:00 - 23:00",en:"🕒 Opening hours: 11:00 - 23:00"},
+    "page_order_title": {ar:"اطلب",fr:"Commander",en:"Order"},
     "lead_title": {ar:"قدم طلبك الآن",fr:"Passez votre commande maintenant",en:"Place your order now"},
     "lead_desc": {ar:"املأ البيانات وسنتواصل معك قريباً لتأكيد طلبك",fr:"Remplissez les détails et nous vous contacterons bientôt pour confirmer votre commande",en:"Fill in your details and we will contact you shortly to confirm your order"},
     "client_section": {ar:"👤 بيانات الزبون",fr:"👤 Informations client",en:"👤 Customer information"},
