@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة التحكم - Admin dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/1.png" type="image/png">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="login_title">لوحة التحكم</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="images/1.png" rel="icon" type="image/png"/>
+<style>
     .admin-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -151,91 +152,81 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="container admin-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-      <div class="logo" style="display:flex; align-items:center; gap:10px;">
-        <img src="images/1.png" alt="Fermaja" style="height:50px; width:auto;" />
-        <h1>Admin Dashboard - لوحة التحكم</h1>
-      </div>
-      <nav>
-        <ul style="display:flex; gap:15px; list-style:none; align-items:center;">
-          <li><a href="index.html">Acceuil - الرئيسية</a></li>
-          <li><a href="admin.html" class="active">Commandes - الطلبات</a></li>
-          <li><button onclick="logout()" style="background:#dc3545;color:#fff;border:none;padding:8px 18px;border-radius:30px;cursor:pointer;font-weight:700;">Logout🚪خروج</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="page-section" style="padding:40px 0;">
-    <div class="container">
-      <h2>📋 إدارة الطلبات - Gestion des ordres</h2>
-      <p class="subtitle">مراقبة وتحديث الطلبات مع إحصائيات فورية - ‎Surveillez et mettez à jour les ordres avec des statistiques en temps réel‎</p>
-
-      <!-- إحصائيات سريعة -->
-      <div class="admin-stats" id="statsContainer">
-        <div class="stat-card"><div class="stat-number" id="totalOrders">0</div><div class="stat-label">إجمالي الطلبات - Total des commandes</div></div>
-        <div class="stat-card"><div class="stat-number" id="newOrders">0</div><div class="stat-label">جديد - Nouveau</div></div>
-        <div class="stat-card"><div class="stat-number" id="acceptedOrders">0</div><div class="stat-label">مقبول - Accepté</div></div>
-        <div class="stat-card"><div class="stat-number" id="completedOrders">0</div><div class="stat-label">مكتمل - ‎Completé</div></div>
-      </div>
-
-      <!-- فلترة حسب اليوم -->
-      <div class="filter-bar">
-        <label for="filterDate">📅 تصفية حسب اليوم - Filtrer par Date</label>
-        <input type="date" id="filterDate" />
-        <button onclick="applyFilter()">🔍</button>
-        <button onclick="resetFilter()" style="background:#6c757d;">🔄 إلغاء الفلترة - Reinitialiser le filtre </button>
-        <span style="margin-right:auto;font-weight:700;" id="filterLabel">عرض الكل - Afficher tout</span>
-      </div>
-
-      <!-- ملخص المبالغ -->
-      <div class="orders-summary" id="summaryContainer">
-        <div class="summary-item"><div class="amount" id="sumWithDelivery">0 DA</div><div>💰TOTAL (avec livraison)</div></div>
-        <div class="summary-item"><div class="amount" id="sumWithoutDelivery">0 DA</div><div>💰 Total (sans livraison)</div></div>
-        <div class="summary-item"><div class="amount" id="deliveryTotal">0 DA</div><div>🚚 Frais de livraison</div></div>
-      </div>
-
-      <!-- جدول الطلبات -->
-      <div class="orders-table-wrap">
-        <table class="orders-table" id="ordersTable">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nom complet</th>
-              <th>N° de Tel</th>
-              <th>Sandwich</th>
-              <th>Supplément</th>
-              <th>Dessert</th>
-              <th>Boisson</th>
-              <th>Commune</th>
-              <th>Prix (sans livraison)</th>
-              <th>Frais de livraison</th>
-              <th>TOTAL</th>
-               <th>Date</th>
-              <th>Etat</th>
-              <th class="no-print">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="ordersBody">
-            <!-- سيتم ملء البيانات -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <p>© فرماجة 2026 , جميع الحقوق محفوظة</p>
-      <p>© Fermaja 2026 , tous droits réservés</p>
-      <div class="social">
-        <a href="https://www.instagram.com/fermaja.food/" target="_blank">📸Instagram - إنستغرام </a>
-    </div>
-  </footer>
-
-  <script src="js/admin.js"></script>
-  <script>
+<header>
+<div class="container admin-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+<div class="logo" data-i18n="login_title" style="display:flex; align-items:center; gap:10px;">لوحة التحكم</div>
+<nav>
+<ul style="display:flex; gap:15px; list-style:none; align-items:center;">
+<li><a data-i18n="nav_home" href="index.html">الرئيسية</a></li>
+<li><a class="active" data-i18n="admin_nav_orders" href="admin.html">الطلبات</a></li>
+<li><button data-i18n="logout" onclick="logout()" style="background:#dc3545;color:#fff;border:none;padding:8px 18px;border-radius:30px;cursor:pointer;font-weight:700;">خروج 🚪</button></li>
+</ul>
+</nav>
+</div>
+</header>
+<section class="page-section" style="padding:40px 0;">
+<div class="container">
+<h2 data-i18n="admin_title">📋 إدارة الطلبات</h2>
+<p class="subtitle" data-i18n="admin_subtitle">مراقبة وتحديث الطلبات مع إحصائيات فورية</p>
+<!-- إحصائيات سريعة -->
+<div class="admin-stats" id="statsContainer">
+<div class="stat-card"><div class="stat-number" id="totalOrders">0</div><div class="stat-label" data-i18n="admin_total">إجمالي الطلبات</div></div>
+<div class="stat-card"><div class="stat-number" id="newOrders">0</div><div class="stat-label" data-i18n="admin_new">جديد</div></div>
+<div class="stat-card"><div class="stat-number" id="acceptedOrders">0</div><div class="stat-label" data-i18n="admin_accepted">مقبول</div></div>
+<div class="stat-card"><div class="stat-number" id="completedOrders">0</div><div class="stat-label" data-i18n="admin_completed">مكتمل</div></div>
+</div>
+<!-- فلترة حسب اليوم -->
+<div class="filter-bar">
+<label data-i18n="filter_date" for="filterDate">📅 تصفية حسب اليوم</label>
+<input id="filterDate" type="date"/>
+<button onclick="applyFilter()">🔍</button>
+<button data-i18n="filter_reset" onclick="resetFilter()" style="background:#6c757d;">🔄 إلغاء الفلترة</button>
+<span data-i18n="filter_all" id="filterLabel" style="margin-right:auto;font-weight:700;">عرض الكل</span>
+</div>
+<!-- ملخص المبالغ -->
+<div class="orders-summary" id="summaryContainer">
+<div class="summary-item"><div class="amount" id="sumWithDelivery">0 DA</div><div data-i18n="total_with_delivery">💰 الإجمالي مع التوصيل</div></div>
+<div class="summary-item"><div class="amount" id="sumWithoutDelivery">0 DA</div><div data-i18n="total_without_delivery">💰 الإجمالي بدون التوصيل</div></div>
+<div class="summary-item"><div class="amount" id="deliveryTotal">0 DA</div><div data-i18n="delivery_fees">🚚 مصاريف التوصيل</div></div>
+</div>
+<!-- جدول الطلبات -->
+<div class="orders-table-wrap">
+<table class="orders-table" id="ordersTable">
+<thead>
+<tr>
+<th>#</th>
+<th data-i18n="th_name">الاسم الكامل</th>
+<th data-i18n="th_phone">رقم الهاتف</th>
+<th data-i18n="th_sandwich">الساندويش</th>
+<th data-i18n="th_supplement">الإضافات</th>
+<th data-i18n="th_dessert">التحلية</th>
+<th data-i18n="th_drink">المشروب</th>
+<th data-i18n="th_commune">البلدية</th>
+<th data-i18n="th_price">السعر بدون التوصيل</th>
+<th data-i18n="th_delivery">مصاريف التوصيل</th>
+<th data-i18n="th_total">الإجمالي</th>
+<th data-i18n="th_date">التاريخ</th>
+<th data-i18n="th_status">الحالة</th>
+<th class="no-print" data-i18n="th_actions">الإجراءات</th>
+</tr>
+</thead>
+<tbody id="ordersBody">
+<!-- سيتم ملء البيانات -->
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<footer>
+<div class="container">
+<p data-i18n="footer_rights">© فرماجة 2026، جميع الحقوق محفوظة</p>
+<p data-i18n="footer_rights">© فرماجة 2026، جميع الحقوق محفوظة</p>
+<div class="social">
+<a data-i18n="footer_instagram" href="https://www.instagram.com/fermaja.food/" target="_blank">📸 إنستغرام</a>
+</div>
+</div></footer>
+<script src="js/admin.js"></script>
+<script>
     function logout() {
       sessionStorage.removeItem('isLoggedIn');
       window.location.href = '/login.html';
@@ -244,6 +235,6 @@
     if (!sessionStorage.getItem('isLoggedIn')) {
       window.location.href = '/login.html';
     }
-  </script><script src="js/config.js"></script>
+  </script><script src="js/i18n.js"></script><script src="js/config.js"></script>
 </body>
 </html>
