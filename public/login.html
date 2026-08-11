@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fermaja - admin dashboard</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/1.png" type="image/png">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title data-i18n="login_title">لوحة التحكم</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="images/1.png" rel="icon" type="image/png"/>
+<style>
     .login-section {
       min-height: 80vh;
       display: flex;
@@ -53,29 +54,22 @@
   </style>
 </head>
 <body>
-  <section class="login-section">
-    <div class="login-card">
-      <div class="login-logo">🧀</div>
-      <h2>لوحة التحكم</h2>
-      <p class="sub">يرجى تسجيل الدخول للمتابعة</p>
-      <form id="loginForm">
-        <div class="form-group">
-          <label for="username">اسم المستخدم</label>
-          <input type="text" id="username" placeholder="admin" required />
-        </div>
-        <div class="form-group">
-          <label for="password">كلمة المرور</label>
-          <input type="password" id="password" placeholder="••••••••" required />
-        </div>
-        <button type="submit" class="login-btn">🚀 تسجيل الدخول</button>
-        <div id="loginError" class="login-error"></div>
-      </form>
-      <div style="text-align:center;margin-top:20px;font-size:0.9rem;opacity:0.6;">
-      </div>
-    </div>
-  </section>
-
-  <script>
+<section class="login-section">
+<div class="login-card">
+<div class="login-logo">🧀</div>
+<h2 data-i18n="login_title">لوحة التحكم</h2>
+<p class="sub" data-i18n="login_sub">يرجى تسجيل الدخول للمتابعة</p>
+<form id="loginForm">
+<div class="form-group" data-i18n="username">اسم المستخدم</div>
+<div class="form-group" data-i18n="password">كلمة المرور</div>
+<button class="login-btn" data-i18n="login_button" type="submit">🚀 تسجيل الدخول</button>
+<div class="login-error" id="loginError"></div>
+</form>
+<div style="text-align:center;margin-top:20px;font-size:0.9rem;opacity:0.6;">
+</div>
+</div>
+</section>
+<script>
     // ===== تحديد عنوان الخادم حسب البيئة =====
     const API_BASE = window.location.hostname === 'localhost' 
       ? '' 
@@ -113,5 +107,5 @@
       }
     });
   </script>
-</body>
+<script src="js/i18n.js"></script></body>
 </html>
