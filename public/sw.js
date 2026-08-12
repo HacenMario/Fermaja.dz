@@ -7,7 +7,7 @@ self.addEventListener('push', function(event) {
     vibrate: [200, 100, 200]
   };
   event.waitUntil(
-    self.registration.showNotification('فرماجا', options)
+    self.registration.showNotification('فرماجة', options)
   );
 });
 
