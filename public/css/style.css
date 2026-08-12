@@ -3829,3 +3829,343 @@ html[dir="ltr"] #backToTopBtn {
     font-size: 21px;
   }
 }
+
+/* ============================================================
+   FERMAJA — FINAL CROSS-LANGUAGE / CROSS-DEVICE HARDENING
+   ------------------------------------------------------------
+   This layer fixes visual-state conflicts without changing
+   application navigation or JavaScript logic.
+   ============================================================ */
+
+/* ---------- Global rendering stability ---------- */
+html {
+  min-width: 320px;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Never let decorative pseudo-elements capture a click. */
+.hero::before,
+.hero::after,
+.menu-card::after,
+.card::before,
+.card::after,
+.product-card::before,
+.product-card::after,
+.feature-item::before,
+.feature-item::after,
+.btn::before,
+.btn::after {
+  pointer-events: none !important;
+}
+
+/* ---------- Language modal: state-safe behavior ---------- */
+/*
+   The previous language-modal rules used display:flex !important.
+   That can override an inline style such as display:none set by
+   the language script, leaving a transparent full-screen layer
+   over the page. The following rules make hidden states explicit.
+*/
+
+/* Hidden means genuinely non-interactive. */
+.language-modal[hidden],
+.language-popup[hidden],
+.lang-modal[hidden],
+.lang-popup[hidden],
+.language-picker-modal[hidden],
+.language-selector-modal[hidden],
+#languageModal[hidden],
+#languagePopup[hidden],
+#langModal[hidden],
+#langPopup[hidden],
+.language-modal[aria-hidden="true"],
+.language-popup[aria-hidden="true"],
+.lang-modal[aria-hidden="true"],
+.lang-popup[aria-hidden="true"],
+.language-picker-modal[aria-hidden="true"],
+.language-selector-modal[aria-hidden="true"],
+#languageModal[aria-hidden="true"],
+#languagePopup[aria-hidden="true"],
+#langModal[aria-hidden="true"],
+#langPopup[aria-hidden="true"],
+.language-modal.hidden,
+.language-popup.hidden,
+.lang-modal.hidden,
+.lang-popup.hidden,
+.language-picker-modal.hidden,
+.language-selector-modal.hidden,
+#languageModal.hidden,
+#languagePopup.hidden,
+#langModal.hidden,
+#langPopup.hidden,
+.language-modal.is-hidden,
+.language-popup.is-hidden,
+.lang-modal.is-hidden,
+.lang-popup.is-hidden,
+#languageModal.is-hidden,
+#languagePopup.is-hidden,
+#langModal.is-hidden,
+#langPopup.is-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* When the modal is explicitly open, it is the only overlay allowed
+   to capture pointer events. */
+.language-modal.show,
+.language-modal.active,
+.language-modal.open,
+.language-modal.visible,
+.language-popup.show,
+.language-popup.active,
+.language-popup.open,
+.language-popup.visible,
+.lang-modal.show,
+.lang-modal.active,
+.lang-modal.open,
+.lang-modal.visible,
+.lang-popup.show,
+.lang-popup.active,
+.lang-popup.open,
+.lang-popup.visible,
+#languageModal.show,
+#languageModal.active,
+#languageModal.open,
+#languageModal.visible,
+#languagePopup.show,
+#languagePopup.active,
+#languagePopup.open,
+#languagePopup.visible,
+#langModal.show,
+#langModal.active,
+#langModal.open,
+#langModal.visible,
+#langPopup.show,
+#langPopup.active,
+#langPopup.open,
+#langPopup.visible {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Inline display:none must always win over the visual overlay. */
+.language-modal[style*="display: none"],
+.language-popup[style*="display: none"],
+.lang-modal[style*="display: none"],
+.lang-popup[style*="display: none"],
+.language-picker-modal[style*="display: none"],
+.language-selector-modal[style*="display: none"],
+#languageModal[style*="display: none"],
+#languagePopup[style*="display: none"],
+#langModal[style*="display: none"],
+#langPopup[style*="display: none"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* The modal itself must never make buttons underneath clickable through it. */
+.language-modal,
+.language-popup,
+.lang-modal,
+.lang-popup,
+.language-picker-modal,
+.language-selector-modal,
+#languageModal,
+#languagePopup,
+#langModal,
+#langPopup {
+  overscroll-behavior: contain;
+  touch-action: manipulation;
+}
+
+/* ---------- Language buttons ---------- */
+.language-modal button,
+.language-popup button,
+.lang-modal button,
+.lang-popup button,
+.language-picker-modal button,
+.language-selector-modal button,
+#languageModal button,
+#languagePopup button,
+#langModal button,
+#langPopup button {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- Navigation and real controls ---------- */
+nav a,
+nav button,
+header a,
+header button,
+.btn,
+button:not([disabled]),
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  position: relative;
+  z-index: 2;
+}
+
+/* Do not allow decorative layers inside controls to intercept clicks. */
+nav a::before,
+nav a::after,
+nav button::before,
+nav button::after,
+.btn::before,
+.btn::after {
+  pointer-events: none !important;
+}
+
+/* ---------- Modern responsive container ---------- */
+.container {
+  width: min(100% - 40px, 1240px);
+  margin-inline: auto;
+}
+
+@media (min-width: 1440px) {
+  .container {
+    width: min(100% - 64px, 1320px);
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    width: min(100% - 32px, 920px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  button,
+  .btn,
+  nav a {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+}
+
+/* ---------- Back to top: final deterministic icon ---------- */
+#backToTopBtn {
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+#backToTopBtn.show,
+#backToTopBtn.visible,
+#backToTopBtn.active {
+  display: grid !important;
+}
+
+/* Always provide a real arrow even when HTML has no icon. */
+#backToTopBtn::before {
+  content: "\2191" !important;
+  position: relative !important;
+  inset: auto !important;
+  z-index: 20 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  border: 0 !important;
+  font-family: Arial, "Segoe UI Symbol", sans-serif !important;
+  font-size: 25px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+
+#backToTopBtn svg,
+#backToTopBtn i,
+#backToTopBtn span {
+  display: none !important;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ---------- Dark mode consistency ---------- */
+body.dark {
+  color-scheme: dark;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  color-scheme: dark;
+}
+
+body.dark .language-modal > div,
+body.dark .language-popup > div,
+body.dark .lang-modal > div,
+body.dark .lang-popup > div,
+body.dark #languageModal > div,
+body.dark #languagePopup > div,
+body.dark #langModal > div,
+body.dark #langPopup > div {
+  background: var(--white, #1b241e) !important;
+  color: var(--text, #f3f5f1) !important;
+}
