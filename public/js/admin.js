@@ -11,10 +11,14 @@ function adminFetch(url, options = {}) {
 
 document.addEventListener('DOMContentLoaded', () => {
   // التحقق من تسجيل الدخول
-  if (!sessionStorage.getItem('isLoggedIn')) {
-    window.location.href = '/login.html';
-    return;
-  }
+const adminToken = localStorage.getItem('fermaja_admin_token');
+
+if (!sessionStorage.getItem('isLoggedIn') || !adminToken) {
+  sessionStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('fermaja_admin_token');
+  window.location.href = '/login.html';
+  return;
+}
 
   const tbody = document.getElementById('ordersBody');
   const filterDate = document.getElementById('filterDate');
