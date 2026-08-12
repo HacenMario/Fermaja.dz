@@ -178,9 +178,14 @@
 
         const result = await response.json();
 
-        if (result.success) {
-          sessionStorage.setItem('isLoggedIn', 'true');
-          window.location.href = '/admin.html';
+if (result.success) {
+  sessionStorage.setItem('isLoggedIn', 'true');
+
+  if (result.token) {
+    localStorage.setItem('fermaja_admin_token', result.token);
+  }
+
+  window.location.href = '/admin.html';
         } else {
           errorEl.textContent = '❌ ' + (result.message || 'بيانات الدخول غير صحيحة');
         }
