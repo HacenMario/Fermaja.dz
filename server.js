@@ -131,6 +131,48 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+const allowedOrigins = [
+  'https://fermaja-dz.vercel.app',
+  'https://fermaja-dz-y4hb.onrender.com',
+  'http://localhost:3000',
+  'http://localhost:5000'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // السماح للطلبات التي لا تحتوي Origin مثل Postman/server-to-server
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
+  },
+
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'Accept'
+  ],
+
+  credentials: false,
+
+  optionsSuccessStatus: 204
+}));
+
+// التعامل صراحةً مع preflight
+app.options('*', cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  credentials: false
+}));
+
 // مسارات الطلبات
 app.use('/api/orders', orderRoutes);
 
